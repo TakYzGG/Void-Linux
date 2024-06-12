@@ -1,22 +1,25 @@
 #!/bin/bash
 # Creador: TakYzGG
-# Instalador de i3wm y complementos
+# Instalador de fluxbox y complementos
 
 # Actualizar sistema
 xbps-install -Su
 
-# Descargar i3wm
-xbps-install i3
+# Descargar fluxbox
+xbps-install fluxbox
 
 # Descargar complementos
-xbps-install i3blocks
-xbps-install i3-gaps
+xbps-install tint2
 xbps-install feh
 
-# Descargar Programas
-xbps-install dmenu
+# Descargar programas
 xbps-install firefox
 xbps-install Thunar
+xbps-install leafpad 
+xbps-install vlc
+xbps-install cmus
+xbps-install dmenu
+xbps-install libreoffice
 
 echo Instalacion finalizada
 echo Copiar archivos de configuracion
