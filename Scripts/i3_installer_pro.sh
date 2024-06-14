@@ -29,6 +29,8 @@ mv -r Wallpapers ~
 # Copiar fuentes
 echo Copiando fuentes
 cd ~
+
+echo Termino la instalacion y configuracion de i3
 cd Dotfiles
 cd fonts
 cp * /usr/share/fonts/X11/TTF
