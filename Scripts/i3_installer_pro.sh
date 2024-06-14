@@ -1,6 +1,9 @@
 #!/bin/bash
 # Creador: TakYzGG
 
+# Actualizar el sistema
+xbps-install -Su
+
 # Instalar paquetes necesarios
 echo Iniciando instalacion
 xbps-install i3 i3-gaps i3blocks dmenu feh ranger firefox
@@ -30,7 +33,8 @@ mv -r Wallpapers ~
 echo Copiando fuentes
 cd ~
 
-echo Termino la instalacion y configuracion de i3
 cd Dotfiles
 cd fonts
 cp * /usr/share/fonts/X11/TTF
+
+echo Termino la instalacion y configuracion de i3 
