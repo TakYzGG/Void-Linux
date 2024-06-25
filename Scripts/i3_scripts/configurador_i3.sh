@@ -18,7 +18,7 @@ mv * ~/.config
 # Mover fondos de pantalla
 echo "--Moviendo fondos de pantalla--"
 cd ~/Dotfiles
-mv Wallpapers/ $HOME/
+mv Wallpapers/ ~/
 
 # Mover fuentes
 echo "--Moviendo fuentes--"
