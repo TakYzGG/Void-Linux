@@ -11,18 +11,17 @@ xbps-install -y xinit
 xbps-install -y neovim
 xbps-install -y python3
 xbps-install -y lxterminal
+xbps-install -y alsa-utils
 xbps-install -y pulseaudio
 xbps-install -y NetworkManager
-xbps-install -y alsa-plugins-pulseaudio
 
 # Servicios
 ln -s /etc/sv/dbus						/var/service
 ln -s /etc/sv/lxdm						/var/service
-ln -s /etc/sv/pulseaudio				/var/service
+ln -s /etc/sv/alsa 						/var/service
 ln -s /etc/sv/NetworkManager			/var/service
 
 # Iniciar servicios
-sv enable pulseaudio
 sv enable NetworkManager
 
 # Optimizaciones
