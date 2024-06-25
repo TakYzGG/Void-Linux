@@ -1,0 +1,2 @@
+fluxbox instalador debe ejecutarse como root
+configurador fluxbox debe ejecutarse como usuario
