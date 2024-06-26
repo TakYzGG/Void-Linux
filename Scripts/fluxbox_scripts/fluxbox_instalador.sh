@@ -16,10 +16,13 @@ xbps-install -y firefox
 xbps-install -y Thunar
 xbps-install -y leafpad 
 xbps-install -y vlc
-xbps-install -y cmus
+xbps-install -y audacius
 xbps-install -y dmenu
 xbps-install -y libreoffice
 xbps-install -y galculator
+xbps-insatll -y xreader
+xbps-insatll -y xarchiver
+xbps-insatll -y gparted
 
 echo Instalacion finalizada
 echo Copiar archivos de configuracion
