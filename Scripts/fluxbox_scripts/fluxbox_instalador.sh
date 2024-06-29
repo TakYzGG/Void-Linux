@@ -24,6 +24,7 @@ xbps-insatll -y xreader
 xbps-insatll -y xarchiver
 xbps-insatll -y gparted
 xbps-insatll -y lxappearance
+xbps-insatll -y pavucontrol
 
 # Descargar temas gtk
 xbps-insatll -y arc-theme
