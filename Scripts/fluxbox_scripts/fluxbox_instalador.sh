@@ -23,6 +23,12 @@ xbps-install -y galculator
 xbps-insatll -y xreader
 xbps-insatll -y xarchiver
 xbps-insatll -y gparted
+xbps-insatll -y lxappearance
+
+# Descargar temas gtk
+xbps-insatll -y arc-theme
+xbps-insatll -y arc-icon-theme
+xbps-insatll -y papirus-icon-theme
 
 echo Instalacion finalizada
 echo Copiar archivos de configuracion
