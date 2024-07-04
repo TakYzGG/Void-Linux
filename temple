@@ -1,0 +1,21 @@
+# Template file for 'mi-paquete'
+pkgname=mi-paquete
+version=1.0
+revision=1
+wrksrc="${pkgname}-${version}"
+build_style=gnu-makefile
+hostmakedepends="make"
+short_desc="Descripción corta de mi paquete"
+maintainer="Tu Nombre <tu.email@example.com>"
+license="GPL-2.0-or-later"
+homepage="https://example.com/mi-paquete"
+distfiles="https://example.com/releases/${pkgname}-${version}.tar.gz"
+checksum=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+
+do_build() {
+    make
+}
+
+do_install() {
+    make DESTDIR=${DESTDIR} install
+}
