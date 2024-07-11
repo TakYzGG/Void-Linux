@@ -1,2 +1,0 @@
-i3 instalador debe ejecutarse como root
-configurador i3 debe ejecutarse como usuario
