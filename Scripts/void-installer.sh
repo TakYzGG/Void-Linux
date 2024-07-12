@@ -236,8 +236,6 @@ while true; do
 						chsh -s /bin/zsh
 						read -p "¿Cual es tu nombre de usuario?: " usuario
 						chsh -s /bin/zsh $usuario
-						touch .zshrc /home/$usuario/
-						touch .zshrc /root
 						break
 						;;
 				2)
@@ -267,14 +265,15 @@ while true; do
 		esac
 done
 
-# Personalizar bash/zsh
+# Instalar config basica bash/zsh
 if [ "$zsh" -eq 1 ]; then
 		wget $zshrc
 		cp .zshrc /home/$usuario
 		cp .zshrc /root
 else
+		rm -rf .bashrc /home/$usuario
+		rm -rf .bashrc /root
 		wget $bashrc
-		read -p "¿Cual es tu nombre de usuario?: " usuario
 		cp .bashrc /home/$usuario
 		cp .bashrc /root
 fi
