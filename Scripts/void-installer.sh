@@ -4,8 +4,8 @@
 # Variables
 xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
 zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
-zshrc=PROMPT="[%F{magenta}%n%f %F{blue}%~%f]%F{red}$%f "
-bashrc='PS1=[\[\e[95m\]\u\[\e[94m\ \w\[\e[0m\]]\[\e[91m\]\\$\[\e[0m\] '
+zshrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.zshrc
+bashrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.bashrc
 
 # Mensaje inicial
 echo "Iniciando instalacion..."
@@ -269,13 +269,14 @@ done
 
 # Personalizar bash/zsh
 if [ "$zsh" -eq 1 ]; then
-		echo "alias ls='ls --color=auto'" >> /home/$usuario/.zshrc
-		echo "alias ls='ls --color=auto'" >> /root/.zshrc
-		echo "$zshrc" >> /home/$usuario/.zshrc
-		echo "$zshrc" >> /root/.zshrc
+		wget $zshrc
+		cp .zshrc /home/$usuario
+		cp .zshrc /root
 else
-		sed -i '7s/.*/"$bashrc"/' /home/"$usuario"/.bashrc
-		sed -i '7s/.*/$bashrc/' /root/.bashrc
+		wget $bashrc
+		read -p "¿Cual es tu nombre de usuario?: " usuario
+		cp .bashrc /home/$usuario
+		cp .bashrc /root
 fi
 
 # Mover los servicios a /var/service
