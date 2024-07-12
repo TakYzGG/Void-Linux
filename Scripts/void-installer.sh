@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 # Creador: TakYzGG
 
-# Links
-xdebp=https://raw.githubusercontent.com/xdeb-org/xdeb/master/xdeb
-zramd=https://github.com/maximumadmin/zramd/releases/download/v0.9.2/zramd_amd64.tar.gz
+# Variables
+xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
+zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
+zshrc=PROMPT="[%F{magenta}%n%f %F{blue}%~%f]%F{red}$%f "
+bashrc='PS1=[\[\e[95m\]\u\[\e[94m\ \w\[\e[0m\]]\[\e[91m\]\\$\[\e[0m\] '
 
 # Mensaje inicial
 echo "Iniciando instalacion..."
@@ -15,8 +17,8 @@ xbps-install -y void-repo-multilib
 # Añadir repositorio nonfree
 while true; do
 		echo "¿Quieres añadir el repositorio nonfree?"
-		echo -e "\e[32m1) Si\e[0m"
-		echo -e "\e[31m2) No\e[0m"
+		echo "1) Si"
+		echo "2) No"
 		read -p "Ingresa la respuesta (1/2): " nonfree
 
 		case $nonfree in
@@ -134,8 +136,8 @@ done
 if [ "$dewm" -gt 4 ] && [ "$dewm" -lt 12 ]; then
 		while true; do
 				echo "¿Quieres instalar programas extra?"
-				echo -e "\e[32m1) Si\e[0m"
-				echo -e "\e[31m2) No\e[0m"
+				echo "1) Si"
+				echo "2) No"
 				read -p "Ingresa la respuesta (1/2): " programas
 
 				case $programas in
@@ -155,8 +157,8 @@ fi
 # Instalar kernel lts
 while true; do
 		echo "¿Quieres instalar el kernel lts?"
-		echo -e "\e[32m1) Si\e[0m"
-		echo -e "\e[31m2) No\e[0m"
+		echo "1) Si"
+		echo "2) No"
 		read -p "Ingresa la respuesta (1/2): " kernel
 		
 		case $kernel in
@@ -176,8 +178,8 @@ done
 # Instalar xdeb
 while true; do
 		echo "¿Quieres instalar xdeb?"
-		echo -e "\e[32m1) Si\e[0m"
-		echo -e "\e[31m2) No\e[0m"
+		echo "1) Si"
+		echo "2) No"
 		read -p "Ingresa la respuesta (1/2): " xdeb
 		
 		case $xdeb in
@@ -195,26 +197,21 @@ while true; do
 		esac
 done
 
-# Comprobar si el pc es de 32 o 64 bits
-arquitectura=$(uname -m)
-if [ "$arquitectura" == "x86_64" ]; then
-
 # Instalar zram
 while true; do
 		echo "¿Quieres instalar zram?"
-		echo -e "\e[32m1) Si\e[0m"
-		echo -e "\e[31m2) No\e[0m"
+		echo "1) Si"
+		echo "2) No"
 		read -p "Ingresa la respuesta (1/2): " zram
 		
 		case $zram in
 				1)
 						echo "Instalando zram..."
-						wget $zramd
-						tar xf zramd_amd64.tar.gz
-						mv zramd_amd64 zramd
-						mv zramd /usr/local/bin
-						read -p "¿Cuanta zram quieres usar (MB)? " zramb
-						echo "/usr/local/bin/zramd start --max-size $zramb" >> /etc/rc.local
+						wget $zramp
+						chmod +x zram
+						mv zram /usr/local/bin
+						echo "/usr/local/bin/zram start" >> /etc/rc.local
+						echo "La cantidad por defecto de zram es el 50% de la ram del equipo, para cambiarlo puedes hacerlo en /usr/local/bin/zram"
 						break
 						;;
 				2)
@@ -223,14 +220,13 @@ while true; do
 						;;
 		esac
 done
-fi
 
 # Instalar zsh
 
 while true; do
 		echo "¿Quieres instalar zsh?"
-		echo -e "\e[32m1) Si\e[0m"
-		echo -e "\e[31m2) No\e[0m"
+		echo "1) Si"
+		echo "2) No"
 		read -p "Ingresa la respuesta (1/2): " zsh
 		
 		case $zsh in
@@ -240,6 +236,8 @@ while true; do
 						chsh -s /bin/zsh
 						read -p "¿Cual es tu nombre de usuario?: " usuario
 						chsh -s /bin/zsh $usuario
+						touch .zshrc /home/$usuario/
+						touch .zshrc /root
 						break
 						;;
 				2)
@@ -252,8 +250,8 @@ done
 # Temas GTK
 while true; do
 		echo "¿Quieres instalar algunos temas gtk?"
-		echo -e "\e[32m1) Si\e[0m"
-		echo -e "\e[31m2) No\e[0m"
+		echo "1) Si"
+		echo "2) No"
 		read -p "Ingresa la respuesta (1/2): " temas
 		
 		case $temas in
@@ -268,6 +266,17 @@ while true; do
 						;;
 		esac
 done
+
+# Personalizar bash/zsh
+if [ "$zsh" -eq 1 ]; then
+		echo "alias ls='ls --color=auto'" >> /home/$usuario/.zshrc
+		echo "alias ls='ls --color=auto'" >> /root/.zshrc
+		echo "$zshrc" >> /home/$usuario/.zshrc
+		echo "$zshrc" >> /root/.zshrc
+else
+		sed -i '7s/.*/"$bashrc"/' /home/"$usuario"/.bashrc
+		sed -i '7s/.*/$bashrc/' /root/.bashrc
+fi
 
 # Mover los servicios a /var/service
 echo "Creando servicios..."
@@ -291,4 +300,4 @@ rm -r /var/service/agetty-tty5
 rm -r /var/service/agetty-tty6
 
 # Mensaje final
-echo -e "\e[32mLa instalacion termino\e[0m"
+echo "La instalacion termino"
