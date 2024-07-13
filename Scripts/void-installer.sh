@@ -273,8 +273,8 @@ if [ "$zsh" -eq 1 ]; then
 		cp .zshrc /root
 else
 		echo "Borrando configuracion por defecto de bash"
-		rm -rf /home/$usuario/.bashrc
-		rm -rf /root/.bashrc
+		rm -f /home/$usuario/.bashrc
+		rm -f /root/.bashrc
   		echo "Descargando configuracion basica de bash"
 		wget $bashrc
 		cp .bashrc /home/$usuario
