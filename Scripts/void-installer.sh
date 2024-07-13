@@ -267,12 +267,15 @@ done
 
 # Instalar config basica bash/zsh
 if [ "$zsh" -eq 1 ]; then
+		echo "Descargando configuracion basica de zsh"
 		wget $zshrc
 		cp .zshrc /home/$usuario
 		cp .zshrc /root
 else
+		echo "Borrando configuracion por defecto de bash"
 		rm -rf /home/$usuario/.bashrc
 		rm -rf /root/.bashrc
+  		echo "Descargando configuracion basica de bash"
 		wget $bashrc
 		cp .bashrc /home/$usuario
 		cp .bashrc /root
@@ -282,7 +285,7 @@ fi
 echo "Creando servicios..."
 ln -s /etc/sv/dbus						/var/service
 ln -s /etc/sv/alsa						/var/service
-ln -s /etc/sv/NetworkManager			/var/service
+ln -s /etc/sv/NetworkManager					/var/service
 
 # Lxdm
 if [ "$dewm" -lt 12 ]; then
