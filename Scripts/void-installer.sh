@@ -151,7 +151,7 @@ if [ "$dewm" -gt 4 ] && [ "$dewm" -lt 12 ]; then
 				case $programas in
 						1)
 								echo "Instalando programas extra..."
-								xbps-install -y btop galculator xreader leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious libreoffice lxappearance
+								xbps-install -y btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious libreoffice lxappearance
 								break
 								;;
 						2)
