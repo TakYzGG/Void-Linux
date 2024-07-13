@@ -40,7 +40,11 @@ xbps-install -Suy
 
 # Descargar paquetes basicos
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg htop wget xinit neovim python3 alsa-utils pulseaudio NetworkManager
+xbps-install -y xorg wget xinit neovim python3 alsa-utils pulseaudio NetworkManager
+
+# Descargar compresores
+echo "Descargando compresores"
+xbps-install -y zip unzip p7zip
 
 # Instalar de/wm
 while true; do
@@ -122,7 +126,7 @@ while true; do
 						;;
 				11)
 						echo "Instalando Fluxbox..."
-						xbps-install -y lxdm lxterminal feh dmenu plank firefox ranger
+						xbps-install -y lxdm lxterminal feh dmenu firefox ranger
 						break
 						;;
 				12)
@@ -143,7 +147,7 @@ if [ "$dewm" -gt 4 ] && [ "$dewm" -lt 12 ]; then
 				case $programas in
 						1)
 								echo "Instalando programas extra..."
-								xbps-install -y galculator xreader leafpad gparted xarchiver Thunar pavucontrol vlc audacious libreoffice lxappearance
+								xbps-install -y btop galculator xreader leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious libreoffice lxappearance
 								break
 								;;
 						2)
@@ -245,6 +249,22 @@ while true; do
 		esac
 done
 
+# Instalar config basica bash/zsh
+if [ "$zsh" -eq 1 ]; then
+		echo "Descargando configuracion basica de zsh"
+		wget $zshrc
+		cp .zshrc /home/$usuario
+		cp .zshrc /root
+else
+		echo "Borrando configuracion por defecto de bash"
+		rm -f /home/$usuario/.bashrc
+		rm -f /root/.bashrc
+  		echo "Descargando configuracion basica de bash"
+		wget $bashrc
+		cp .bashrc /home/$usuario
+		cp .bashrc /root
+fi
+
 # Temas GTK
 while true; do
 		echo "¿Quieres instalar algunos temas gtk?"
@@ -264,22 +284,6 @@ while true; do
 						;;
 		esac
 done
-
-# Instalar config basica bash/zsh
-if [ "$zsh" -eq 1 ]; then
-		echo "Descargando configuracion basica de zsh"
-		wget $zshrc
-		cp .zshrc /home/$usuario
-		cp .zshrc /root
-else
-		echo "Borrando configuracion por defecto de bash"
-		rm -f /home/$usuario/.bashrc
-		rm -f /root/.bashrc
-  		echo "Descargando configuracion basica de bash"
-		wget $bashrc
-		cp .bashrc /home/$usuario
-		cp .bashrc /root
-fi
 
 # Mover los servicios a /var/service
 echo "Creando servicios..."
