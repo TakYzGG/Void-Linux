@@ -43,8 +43,12 @@ echo "Descargando paquetes basicos..."
 xbps-install -y xorg wget xinit neovim python3 alsa-utils pulseaudio NetworkManager
 
 # Descargar compresores
-echo "Descargando compresores"
+echo "Descargando compresores..."
 xbps-install -y zip unzip p7zip
+
+# Añadir compatibilidad con exfat
+echo "Añadiendo compativilidad con exfat..."
+xbps-install -y exfat-utils
 
 # Instalar de/wm
 while true; do
@@ -251,15 +255,15 @@ done
 
 # Instalar config basica bash/zsh
 if [ "$zsh" -eq 1 ]; then
-		echo "Descargando configuracion basica de zsh"
+		echo "Descargando configuracion basica de zsh..."
 		wget $zshrc
 		cp .zshrc /home/$usuario
 		cp .zshrc /root
 else
-		echo "Borrando configuracion por defecto de bash"
+		echo "Borrando configuracion por defecto de bash..."
 		rm -rf /home/$usuario/.bashrc
 		rm -rf /root/.bashrc
-  		echo "Descargando configuracion basica de bash"
+  		echo "Descargando configuracion basica de bash..."
 		wget $bashrc
 		cp .bashrc /home/$usuario
 		cp .bashrc /root
