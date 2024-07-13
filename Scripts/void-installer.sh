@@ -271,8 +271,8 @@ if [ "$zsh" -eq 1 ]; then
 		cp .zshrc /home/$usuario
 		cp .zshrc /root
 else
-		rm -rf .bashrc /home/$usuario
-		rm -rf .bashrc /root
+		rm -rf /home/$usuario/.bashrc
+		rm -rf /root/.bashrc
 		wget $bashrc
 		cp .bashrc /home/$usuario
 		cp .bashrc /root
