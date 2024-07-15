@@ -47,7 +47,7 @@ echo "Descargando compresores..."
 xbps-install -y zip unzip p7zip
 
 # Añadir compatibilidad con exfat
-echo "Añadiendo compativilidad con exfat..."
+echo "Añadiendo compatibilidad con exfat..."
 xbps-install -y exfat-utils
 
 # Instalar de/wm
@@ -130,7 +130,7 @@ while true; do
 						;;
 				11)
 						echo "Instalando Fluxbox..."
-						xbps-install -y lxdm lxterminal feh dmenu firefox ranger
+						xbps-install -y lxdm lxterminal fluxbox feh dmenu firefox ranger
 						break
 						;;
 				12)
@@ -293,7 +293,7 @@ done
 echo "Creando servicios..."
 ln -s /etc/sv/dbus						/var/service
 ln -s /etc/sv/alsa						/var/service
-ln -s /etc/sv/NetworkManager					/var/service
+ln -s /etc/sv/NetworkManager			/var/service
 
 # Lxdm
 if [ "$dewm" -lt 12 ]; then
