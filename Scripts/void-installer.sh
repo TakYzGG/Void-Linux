@@ -10,6 +10,9 @@ bashrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.bas
 # Mensaje inicial
 echo "Iniciando instalacion..."
 
+# Preguntar nombre de usuario
+read -p "¿Cual es tu usuario?: " usuario
+
 # Añadir repositorio multilib
 echo "Añadiendo repositorios multilib..."
 xbps-install -y void-repo-multilib
@@ -162,12 +165,32 @@ if [ "$dewm" -gt 4 ] && [ "$dewm" -lt 12 ]; then
 		done
 fi
 
+# Herramientas de compilacion
+while true; do
+		echo "¿Quieres instalar herramientas de compilacion basicas?"
+		echo "1) si"
+		echo "2) no"
+		read -p "Ingresa la respuesta (1/2): " compilacion
+
+		case $compilacion in
+				1)
+					echo "Instalando herramientas de compilacion..."
+					xbps-install gcc make pkg-config binutils glibc-devel
+					break
+					;;
+				2)
+					echo "No se instalaran herramientas de compilacion"
+					break
+					;;
+		esac
+done
+
 # Instalar kernel lts
 while true; do
 		echo "¿Quieres instalar el kernel lts?"
 		echo "1) Si"
 		echo "2) No"
-		read -p "Ingresa la respuesta (1/2): " kernel
+		read-p "Ingresa la respuesta (1/2): " kernel
 		
 		case $kernel in
 				1)
@@ -206,6 +229,8 @@ while true; do
 					echo "No se instala ufw"
 					break
 					;;
+		esac
+done
 
 # Instalar xdeb
 while true; do
@@ -266,7 +291,6 @@ while true; do
 						echo "Instalando zsh..."
 						xbps-install -y zsh
 						chsh -s /bin/zsh
-						read -p "¿Cual es tu nombre de usuario?: " usuario
 						chsh -s /bin/zsh $usuario
 						break
 						;;
@@ -304,6 +328,10 @@ while true; do
 				1)
 						echo "Instalando temas..."
 						xbps-install -y arc-theme arc-icon-theme papirus-icon-theme
+						touch /home/$usuario/.config/gtk-3.0/settings.ini
+						echo "[Settings]" >> /home/$usuario/.config/gtk-3.0/settings.ini
+						echo "gtk-theme-name=Arc-Dark" >> /home/$usuario/.config/gtk-3.0/settings.ini
+						echo "gtk-icon-theme-name=Papirus-Dark" >> /home/$usuario/.config/gtk-3.0/settings.ini
 						break
 						;;
 				2)
