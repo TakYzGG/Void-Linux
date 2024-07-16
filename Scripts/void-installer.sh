@@ -183,6 +183,30 @@ while true; do
 		esac
 done
 
+# Instalar ufw (Firewall)
+while true; do
+		echo "¿Quieres instalar ufw?"
+		echo "1) si"
+		echo "2) no"
+		read -p "Ingresa la respuesta (1/2): " ufw
+
+		case $ufw in
+				1)
+					echo "Instalando ufw..."
+					xbps-install -y ufw
+					echo "Configurando ufw..."
+					ufw allow http
+					ufw allow https
+					ufw default deny incoming
+					ufw default allow outgoing
+					ufw enable
+					break
+					;;
+				2)
+					echo "No se instala ufw"
+					break
+					;;
+
 # Instalar xdeb
 while true; do
 		echo "¿Quieres instalar xdeb?"
@@ -288,6 +312,12 @@ while true; do
 						;;
 		esac
 done
+
+# Crear carpetas personales
+echo "Creando carpetas personales..."
+xbps-install -y xdg-user-dirs
+xdg-user-dirs-update
+xbps-remove -R xdg-user-dirs
 
 # Mover los servicios a /var/service
 echo "Creando servicios..."
