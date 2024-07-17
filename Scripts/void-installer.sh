@@ -1,6 +1,12 @@
 #!/bin/sh
 # Creador: TakYzGG
 
+# Variables
+xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
+zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
+zshrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.zshrc
+bashrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.bashrc
+
 # Mensaje inicial
 echo "Iniciando instalacion..."
 
@@ -156,6 +162,19 @@ if [ "$zsh" = "s" ]; then
 	xbps-install -y zsh
 	chsh -s /bin/zsh
 	chsh -s /bin/zsh $usuario
+fi
+if [ "$zsh" = "s" ]; then
+	echo "Configurando zsh..."
+	wget $zshrc
+	cp .zshrc /home/$usuario
+	cp .zshrc /root
+else
+	echo "Configurando bash..."
+	rm -rf /home/$usuario/.bashrc
+	rm -rf /root/.bashrc
+	wget $bashrc
+	cp .bashrc /home/$usuario
+	cp .bashrc /root
 fi
 
 if [ "$temas" = "s" ]; then
