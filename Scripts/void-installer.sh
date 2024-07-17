@@ -122,7 +122,7 @@ if [ "$portatil" = "s" ]; then
 	xbps-install -y brightnessctl acpi
 fi
 
-if [ "$compilacion" = "s" ]; then
+if [ "$compilar" = "s" ]; then
 	echo "Instalando herramientas de compilacion..."
 	xbps-install -y gcc make pkg-config binutils glibc-devel
 fi
