@@ -165,6 +165,26 @@ if [ "$dewm" -gt 4 ] && [ "$dewm" -lt 12 ]; then
 		done
 fi
 
+# Brillo y bateria
+while true; do
+		echo "¿Quieres instalar complementos para portatil?"
+		echo "1) si"
+		echo "2) no"
+		read -p "Ingresa la respuesta (1/2): " portatil
+
+		case $portatil in
+				1)
+					echo "Instalando complementos para portatil..."
+					xbps-install brightnessclt acpi
+					break
+					;;
+				2)
+					echo "No se instalaran complementos para portatil"
+					break
+					;;
+		esac
+done
+
 # Herramientas de compilacion
 while true; do
 		echo "¿Quieres instalar herramientas de compilacion basicas?"
