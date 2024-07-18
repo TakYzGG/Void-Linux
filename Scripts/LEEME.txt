@@ -1,0 +1,29 @@
+---------------------
+  <-Instrucciones->
+---------------------
+
+---------------------------------------------
+
+void-installer:
+
+ <-Pasos de instalacion->
+1) Descargar el archivo void-installer.sh
+2) Ejecutar "sudo chmod +x void-installer.sh"
+3) Ejecutar "sudo ./void-installer.sh"
+4) Responder las preguntas
+5) Cuando inicie lxdm presiona "Alt+Ctrl+F1"
+6) Reinicia el pc cuando la instalacion termine
+
+Si no quieres usar ningun de o wm escribe cualquier cosa y no se instalara ninguno
+
+---------------------------------------------
+
+zram.sh:
+ <-Pasos de instalacion->
+1) Descargar el archivo zram.sh
+2) Ejecutar "sudo chmod +x zram.sh"
+3) Ejecutar "sudo ./zram.sh"
+
+Para cambiar la cantidad de zram puedes hacerlo en /usr/local/bin/zram
+
+---------------------------------------------
