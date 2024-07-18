@@ -49,7 +49,7 @@ xbps-install -y void-repo-multilib
 
 # Descargar paquetes
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xinit neovim python3 alsa-utils pulseaudio NetworkManager
+xbps-install -y xorg wget xinit xclip neovim python3 alsa-utils pulseaudio NetworkManager
 
 # Descargar compresores
 echo "Descargando compresores..."
@@ -91,7 +91,7 @@ if [ "$dewm" = "qtile" ]; then
 fi
 if [ "$dewm" = "bspwm" ]; then
 	echo "Instalando bspwm..."
-	xbps-install -y lxdm lxterminal bspwm feh dmenu firefox ranger
+	xbps-install -y lxdm lxterminal bspwm sxhkd feh dmenu firefox ranger
 fi
 if [ "$dewm" = "jwm" ]; then
 	echo "Instalando jwm..."
