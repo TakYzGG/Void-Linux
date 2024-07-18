@@ -155,6 +155,7 @@ if [ "$zram" = "s" ]; then
 	wget $zramp
 	mv zram /usr/local/bin
 	chmod +x /usr/local/bin/zram
+	echo "/usr/local/bin/zram start" >> /etc/rc.local
 fi
 
 if [ "$zsh" = "s" ]; then
