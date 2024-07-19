@@ -17,6 +17,7 @@ echo "DE: Lxde, Lxqt, Mate, Xfce"
 echo "WM: I3wm, Qtile, Bspwm, Jwm, Icewm, Openbox, Fluxbox"
 read -p "¿Cual quieres usar?: " dewm
 read -p "¿Quieres instalar programas extra? (s/n): " programas
+read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
 read -p "¿Quieres instalar complementos para portatiles? (s/n): " portatil
 read -p "¿Quieres instalar herramientas basicas para compilar? (s/n): " compilar
 read -p "¿Quieres instalar el kernel lts? (s/n): " kernel
@@ -30,6 +31,7 @@ read -p "¿Quieres instalar temas gtk? (s/n): " temas
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
 dewm=$(echo "$dewm" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
+libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
 portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
 compilar=$(echo "$compilar" | tr '[:upper:]' '[:lower:]')
 kernel=$(echo "$kernel" | tr '[:upper:]' '[:lower:]')
@@ -113,7 +115,14 @@ fi
 if [ "$dewm" = "i3wm" ] || [ "$dewm" = "qtile" ] || [ "$dewm" = "bspwm" ] || [ "$dewm" = "jwm" ] || [ "$dewm" = "icewm" ] || [ "$dewm" = "openbox" ] || [ "$dewm" = "fluxbox" ]; then
 	if [ "$programas" = "s" ]; then
 		echo "Instalando programas extra..."
-		xbps-install -y btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious libreoffice lxappearance
+		xbps-install -y btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious lxappearance
+	fi
+fi
+
+if [ "$dewm" = "i3wm" ] || [ "$dewm" = "qtile" ] || [ "$dewm" = "bspwm" ] || [ "$dewm" = "jwm" ] || [ "$dewm" = "icewm" ] || [ "$dewm" = "openbox" ] || [ "$dewm" = "fluxbox" ]; then
+	if [ "$libreoffice" = "s" ]; then
+		echo "Instalando libreoffice..."
+		xbps-install -y libreoffice
 	fi
 fi
 
