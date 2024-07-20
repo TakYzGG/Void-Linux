@@ -1,12 +1,9 @@
 #!/bin/sh
 # Creador: TakYzGG
 
-# Variables
-Dotfiles=https://github.com/TakYzGG/archive/refs/heads/main.zip -O Dotfiles.zip
-
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
-wget $Dotfiles
+wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles.zip
 
 # Descomprimir Dotfiles.zip
 echo "Descompriendo Dotfiles.zip"
@@ -25,7 +22,7 @@ mv Dotfiles-main/Wallpapers					/home/$usuario/
 
 # Mover fuentes
 echo "Moviendo fuentes..."
-mv Dotfiles-main/Fonts						/usr/share/fonts/TTF
+mv Dotfiles-main/Fonts						/usr/share/fonts/
 
 # Eliminar reciduos
 echo "Eliminando reciduos..."
