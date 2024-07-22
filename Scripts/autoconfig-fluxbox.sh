@@ -9,18 +9,22 @@ wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles
 echo "Descompriendo Dotfiles.zip"
 unzip Dotfiles.zip
 
+# Borrar configuraciones por defecto
+rm -rf /home/$usuario/.fluxbox
+rm -rf /home/$usuario/.config/lxterminal
+rm -rf /home/$usuario/.config/nvim
+
 # Mover configuraciones
 read -p "¿Cual es tu usuario?: " usuario
 echo "Moviendo configuraciones..."
 mv Dotfiles-main/.fluxbox/					/home/$usuario/.config
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
-mv Dotfiles-main/.config/dmenu-menus		/home/$usuario/.config
+
 
 # Mover scripts de dmenu
-chowm $usuario:$usuario Dotfiles-main/.config/dmenu-menus
-mv * Dotfiles-main/.config/dmenu-menus		/usr/local/bin
-chmod +x * /usr/local/bin
+mv Dotfiles-main/dmenu-menus/*				/usr/local/bin
+chmod +x /usr/local/bin/*
 
 # Mover Wallpapers
 echo "Moviendo Wallpapers..."
