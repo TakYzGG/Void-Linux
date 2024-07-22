@@ -17,7 +17,7 @@ rm -rf /home/$usuario/.config/nvim
 # Mover configuraciones
 read -p "¿Cual es tu usuario?: " usuario
 echo "Moviendo configuraciones..."
-mv Dotfiles-main/.fluxbox/					/home/$usuario/.config
+mv Dotfiles-main/.fluxbox/					/home/$usuario/
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
 
@@ -32,7 +32,7 @@ mv Dotfiles-main/Wallpapers					/home/$usuario/
 
 # Mover fuentes
 echo "Moviendo fuentes..."
-mv Dotfiles-main/Fonts						/usr/share/fonts/
+mv Dotfiles-main/Fonts/*					/usr/share/fonts/
 
 # Eliminar reciduos
 echo "Eliminando reciduos..."

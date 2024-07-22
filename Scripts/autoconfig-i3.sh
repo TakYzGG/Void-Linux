@@ -33,7 +33,7 @@ mv Dotfiles-main/Wallpapers					/home/$usuario/
 
 # Mover fuentes
 echo "Moviendo fuentes..."
-mv Dotfiles-main/Fonts						/usr/share/fonts/
+mv Dotfiles-main/Fonts/*					/usr/share/fonts/
 
 # Eliminar reciduos
 echo "Eliminando reciduos..."
