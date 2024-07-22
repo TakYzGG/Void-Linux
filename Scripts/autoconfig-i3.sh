@@ -17,6 +17,11 @@ mv Dotfiles-main/.config/i3blocks			/home/$usuario/.config
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
 
+# Mover scripts de dmenu
+chowm $usuario:$usuario Dotfiles-main/.config/dmenu-menus
+mv * Dotfiles-main/.config/dmenu-menus		/usr/local/bin
+chmod +x * /usr/local/bin
+
 # Mover Wallpapers
 echo "Moviendo Wallpapers..."
 mv Dotfiles-main/Wallpapers					/home/$usuario/
