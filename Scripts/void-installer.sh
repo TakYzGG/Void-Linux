@@ -13,8 +13,7 @@ echo "Iniciando instalacion..."
 # Preguntas al usuario
 read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-echo "DE: Lxde, Lxqt, Mate, Xfce"
-echo "WM: I3wm, Qtile, Bspwm, Jwm, Icewm, Openbox, Fluxbox"
+echo "Elige un Escritorio (DE) o un Windows Manager (WM): \nDE: Lxde, Lxqt, Mate \nWM: I3wm, Qtile, Bspwm, Jwm, Icewm, Openbox, Fluxbox \nNinguno: Ninguno"
 read -p "¿Cual quieres usar?: " dewm
 read -p "¿Quieres instalar programas extra? (s/n): " programas
 read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
