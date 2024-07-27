@@ -23,6 +23,9 @@ mv Dotfiles-main/.config/i3blocks			/home/$usuario/.config
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
 
+# Dar permisos a los modulos de i3blocks
+chmod +x /home/$usuario/.config/i3blocks/modulos/*
+
 # Mover scripts de dmenu
 mv Dotfiles-main/dmenu-menus/*				/usr/local/bin
 chmod +x /usr/local/bin/*
