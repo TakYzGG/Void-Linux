@@ -13,6 +13,7 @@ echo "Iniciando instalacion..."
 # Preguntas al usuario
 read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
+read -p "¿Quieres usar Xinit o Lxdm?" init
 echo "Elige un Escritorio (DE) o un Windows Manager (WM): \nDE: Lxde, Lxqt, Mate \nWM: I3wm, Qtile, Bspwm, Jwm, Icewm, Openbox, Fluxbox \nNinguno: Ninguno"
 read -p "¿Cual quieres usar?: " dewm
 read -p "¿Quieres instalar programas extra? (s/n): " programas
@@ -29,6 +30,7 @@ read -p "¿Quieres instalar temas gtk? (s/n): " temas
 # Hacer que todas las respuestas sean minusculas
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
 dewm=$(echo "$dewm" | tr '[:upper:]' '[:lower:]')
+init=$(echo "$init" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
 libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
 portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
@@ -50,7 +52,7 @@ xbps-install -y void-repo-multilib
 
 # Descargar paquetes
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xinit xclip neovim python3 alsa-utils pulseaudio NetworkManager
+xbps-install -y xorg wget xclip neovim python3 alsa-utils pulseaudio NetworkManager
 
 # Descargar compresores
 echo "Descargando compresores..."
@@ -66,49 +68,57 @@ if [ "$nonfree" = "s" ]; then
 	xbps-install -y void-repo-nonfree
 fi
 
+if [ "$init" = "xinit" ]; then
+	echo "Instalando xinit..."
+	xbps-install -y xinit
+else
+	echo "Instalando lxdm..."
+	xbps-install lxdm
+fi
+
 if [ "$dewm" = "lxde" ]; then
 	echo "Instalando lxde..."
-	xbps-install -y lxdm lxterminal lxde firefox galculator xreader leafpad gparted xarchiver pavucontrol vlc audacious libreoffice
+	xbps-install -y lxterminal lxde firefox galculator xreader leafpad gparted xarchiver pavucontrol vlc audacious libreoffice
 fi
 if [ "$dewm" = "lxqt" ]; then
 	echo "Instalando lxqt..."
-	xbps-install -y lxdm lxqt firefox galculator xreader leafpad gparted pavucontrol vlc audacious libreoffice
+	xbps-install -y lxqt firefox galculator xreader leafpad gparted pavucontrol vlc audacious libreoffice
 fi
 if [ "$dewm" = "mate" ]; then
 	echo "Instalando mate..."
-	xbps-install -y lxdm mate-terminal mate firefox galculator xreader pluma gparted xarchiver pavucontrol vlc audacious libreoffice
+	xbps-install -y mate-terminal mate firefox galculator xreader pluma gparted xarchiver pavucontrol vlc audacious libreoffice
 fi
 if [ "$dewm" = "xfce" ]; then
 	echo "Instalando xfce..."
-	xbps-install -y lxdm xfce4 firefox galculator xreader gparted xarchiver pavucontrol vlc audacious libreoffice 
+	xbps-install -y xfce4 firefox galculator xreader gparted xarchiver pavucontrol vlc audacious libreoffice 
 fi
 if [ "$dewm" = "i3wm" ]; then
 	echo "Instalando i3wm..."
-	xbps-install -y lxdm lxterminal i3 i3blocks i3-gaps feh dmenu firefox ranger
+	xbps-install -y lxterminal i3 i3blocks i3-gaps feh dmenu firefox ranger
 fi
 if [ "$dewm" = "qtile" ]; then
 	echo "Instalando qtile..."
-	xbps-install -y lxdm lxterminal qtile feh dmenu firefox ranger
+	xbps-install -y lxterminal qtile feh dmenu firefox ranger
 fi
 if [ "$dewm" = "bspwm" ]; then
 	echo "Instalando bspwm..."
-	xbps-install -y lxdm lxterminal bspwm sxhkd feh dmenu firefox ranger
+	xbps-install -y lxterminal bspwm sxhkd feh dmenu firefox ranger
 fi
 if [ "$dewm" = "jwm" ]; then
 	echo "Instalando jwm..."
-	xbps-install -y lxdm lxterminal jwm feh dmenu firefox ranger
+	xbps-install -y lxterminal jwm feh dmenu firefox ranger
 fi
 if [ "$dewm" = "icewm" ]; then
 	echo "Instalando icewm..."
-	xbps-install -y lxdm lxterminal icewm feh dmenu firefox ranger
+	xbps-install -y lxterminal icewm feh dmenu firefox ranger
 fi
 if [ "$dewm" = "openbox" ]; then
 	echo "Instalando openbox..."
-	xbps-install -y lxdm lxterminal openbox feh dmenu firefox ranger
+	xbps-install -y lxterminal openbox feh dmenu firefox ranger
 fi
 if [ "$dewm" = "fluxbox" ]; then
 	echo "Instalando fluxbox ..."
-	xbps-install -y lxdm lxterminal fluxbox feh dmenu firefox ranger
+	xbps-install -y lxterminal fluxbox feh dmenu firefox ranger
 fi
 
 if [ "$dewm" = "i3wm" ] || [ "$dewm" = "qtile" ] || [ "$dewm" = "bspwm" ] || [ "$dewm" = "jwm" ] || [ "$dewm" = "icewm" ] || [ "$dewm" = "openbox" ] || [ "$dewm" = "fluxbox" ]; then
@@ -198,7 +208,9 @@ ln -s /etc/sv/alsa					/var/service
 ln -s /etc/sv/NetworkManager		/var/service
 
 # Lxdm
+if [ "$init" = "lxdm" ]
 ln -s /etc/sv/lxdm					/var/service
+fi
 
 # Habilitar servicios
 sv enable NetworkManager
