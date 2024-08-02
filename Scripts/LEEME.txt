@@ -19,6 +19,7 @@ Si no quieres usar ningun de o wm escribe cualquier cosa y no se instalara ningu
 ---------------------------------------------
 
 zram.sh:
+
  <-Pasos de instalacion->
 1) Descargar el archivo zram.sh
 2) Ejecutar "sudo chmod +x zram.sh"
@@ -27,3 +28,11 @@ zram.sh:
 Para cambiar la cantidad de zram puedes hacerlo en /usr/local/bin/zram
 
 ---------------------------------------------
+
+xinitrc:
+
+ <-Como usarlo->
+1) Crear el archivo .xinitrc en la carpeta de usuario
+2) Escribir "#!/bin/sh"
+3) Escribir "exec dbus-run-session" y el nombre del de/wm a usar
+4) Para iniciarlo hay q iniciar sesion desde tty y escribir startx en la tty para q inicie el de/wm
