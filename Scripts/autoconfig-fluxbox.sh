@@ -12,6 +12,7 @@ unzip Dotfiles.zip
 # Borrar configuraciones por defecto
 rm -rf /home/$usuario/.fluxbox
 rm -rf /home/$usuario/.config/lxterminal
+rm -rf /home/$usuario/.config/gtk-3.0
 rm -rf /home/$usuario/.config/nvim
 
 # Mover configuraciones
@@ -19,6 +20,7 @@ read -p "¿Cual es tu usuario?: " usuario
 echo "Moviendo configuraciones..."
 mv Dotfiles-main/.fluxbox/					/home/$usuario/
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
+mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
 
 

@@ -34,5 +34,22 @@ xinitrc:
  <-Como usarlo->
 1) Crear el archivo .xinitrc en la carpeta de usuario
 2) Escribir "#!/bin/sh"
-3) Escribir "exec dbus-run-session" y el nombre del de/wm a usar
+3) Escribir "exec" y el nombre del de/wm a usar
 4) Para iniciarlo hay q iniciar sesion desde tty y escribir startx en la tty para q inicie el de/wm
+
+---------------------------------------------
+
+grub:
+
+ <-Grub->
+1) GRUB_TIMEOUT=5 define el tiempo que tarda en iniciar el sistema de manera automatica
+2) GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4" es el nivel de regristro del grub 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"' desactiva el registro en pantalla al inicio
+3) "GRUB_TIMEOUT=0" , "GRUB_HIDDEN_TIMEOUT=0" y "GRUB_HIDDEN_TIMEOUT_QUIET=false" hacen que grub inicie el sistema de manera automatica
+
+---------------------------------------------
+
+gtk config:
+
+cursor theme: https://www.gnome-look.org/p/1358330
+
+---------------------------------------------

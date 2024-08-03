@@ -13,6 +13,7 @@ unzip Dotfiles.zip
 rm -rf /home/$usuario/.config/i3
 rm -rf /home/$usuario/.config/i3blocks
 rm -rf /home/$usuario/.config/lxterminal
+rm -rf /home/$usuario/.config/gtk-3.0
 rm -rf /home/$usuario/.config/nvim
 
 # Mover configuraciones
@@ -21,6 +22,7 @@ echo "Moviendo configuraciones..."
 mv Dotfiles-main/.config/i3					/home/$usuario/.config
 mv Dotfiles-main/.config/i3blocks			/home/$usuario/.config
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
+mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
 
 # Dar permisos a los modulos de i3blocks

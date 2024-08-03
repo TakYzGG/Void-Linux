@@ -56,7 +56,7 @@ xbps-install -y xorg wget xclip neovim python3 alsa-utils pulseaudio NetworkMana
 
 # Descargar compresores
 echo "Descargando compresores..."
-xbps-install -y zip unzip p7zip
+xbps-install -y xz zip unzip p7zip
 
 # Añadir compatibilidad con exfat
 echo "Añadiendo compatibilidad con exfat..."
