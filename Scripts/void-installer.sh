@@ -13,8 +13,8 @@ echo "Iniciando instalacion..."
 # Preguntas al usuario
 read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-read -p "¿Quieres usar Xinit o Lxdm?" init
-echo "Elige un Escritorio (DE) o un Windows Manager (WM): \nDE: Lxde, Lxqt, Mate \nWM: I3wm, Qtile, Bspwm, Jwm, Icewm, Openbox, Fluxbox \nNinguno: Ninguno"
+read -p "¿Quieres usar Xinit o Lxdm? (xinit/lxdm): " init
+echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
 read -p "¿Cual quieres usar?: " dewm
 read -p "¿Quieres instalar programas extra? (s/n): " programas
 read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
@@ -29,7 +29,6 @@ read -p "¿Quieres instalar temas gtk? (s/n): " temas
 
 # Hacer que todas las respuestas sean minusculas
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
-dewm=$(echo "$dewm" | tr '[:upper:]' '[:lower:]')
 init=$(echo "$init" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
 libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
@@ -76,59 +75,62 @@ else
 	xbps-install lxdm
 fi
 
-if [ "$dewm" = "lxde" ]; then
+if [ "$dewm" -eq 0 ]; then
+	echo "No se instalara entorno grafico"
+fi
+if [ "$dewm" -eq 1 ]; then
 	echo "Instalando lxde..."
 	xbps-install -y lxterminal lxde firefox galculator xreader leafpad gparted xarchiver pavucontrol vlc audacious libreoffice
 fi
-if [ "$dewm" = "lxqt" ]; then
+if [ "$dewm" -eq 2 ]; then
 	echo "Instalando lxqt..."
 	xbps-install -y lxqt firefox galculator xreader leafpad gparted pavucontrol vlc audacious libreoffice
 fi
-if [ "$dewm" = "mate" ]; then
+if [ "$dewm" -eq 3 ]; then
 	echo "Instalando mate..."
 	xbps-install -y mate-terminal mate firefox galculator xreader pluma gparted xarchiver pavucontrol vlc audacious libreoffice
 fi
-if [ "$dewm" = "xfce" ]; then
+if [ "$dewm" -eq 4 ]; then
 	echo "Instalando xfce..."
 	xbps-install -y xfce4 firefox galculator xreader gparted xarchiver pavucontrol vlc audacious libreoffice 
 fi
-if [ "$dewm" = "i3wm" ]; then
+if [ "$dewm" -eq 5 ]; then
 	echo "Instalando i3wm..."
 	xbps-install -y lxterminal i3 i3blocks i3-gaps feh dmenu firefox ranger
 fi
-if [ "$dewm" = "qtile" ]; then
+if [ "$dewm" -eq 6 ]; then
 	echo "Instalando qtile..."
 	xbps-install -y lxterminal qtile feh dmenu firefox ranger
 fi
-if [ "$dewm" = "bspwm" ]; then
+if [ "$dewm" -eq 7 ]; then
 	echo "Instalando bspwm..."
 	xbps-install -y lxterminal bspwm sxhkd feh dmenu firefox ranger
 fi
-if [ "$dewm" = "jwm" ]; then
+if [ "$dewm" -eq 8 ]; then
 	echo "Instalando jwm..."
 	xbps-install -y lxterminal jwm feh dmenu firefox ranger
 fi
-if [ "$dewm" = "icewm" ]; then
+if [ "$dewm" -eq 9 ]; then
 	echo "Instalando icewm..."
 	xbps-install -y lxterminal icewm feh dmenu firefox ranger
 fi
-if [ "$dewm" = "openbox" ]; then
+if [ "$dewm" -eq 10 ]; then
 	echo "Instalando openbox..."
 	xbps-install -y lxterminal openbox feh dmenu firefox ranger
 fi
-if [ "$dewm" = "fluxbox" ]; then
+if [ "$dewm" -eq 11 ]; then
 	echo "Instalando fluxbox ..."
 	xbps-install -y lxterminal fluxbox feh dmenu firefox ranger
 fi
 
-if [ "$dewm" = "i3wm" ] || [ "$dewm" = "qtile" ] || [ "$dewm" = "bspwm" ] || [ "$dewm" = "jwm" ] || [ "$dewm" = "icewm" ] || [ "$dewm" = "openbox" ] || [ "$dewm" = "fluxbox" ]; then
+if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$programas" = "s" ]; then
 		echo "Instalando programas extra..."
 		xbps-install -y btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious lxappearance
 	fi
 fi
 
-if [ "$dewm" = "i3wm" ] || [ "$dewm" = "qtile" ] || [ "$dewm" = "bspwm" ] || [ "$dewm" = "jwm" ] || [ "$dewm" = "icewm" ] || [ "$dewm" = "openbox" ] || [ "$dewm" = "fluxbox" ]; then
+if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$libreoffice" = "s" ]; then
 		echo "Instalando libreoffice..."
 		xbps-install -y libreoffice
@@ -208,7 +210,7 @@ ln -s /etc/sv/alsa					/var/service
 ln -s /etc/sv/NetworkManager		/var/service
 
 # Lxdm
-if [ "$init" = "lxdm" ]
+if [ "$init" = "lxdm" ]; then
 ln -s /etc/sv/lxdm					/var/service
 fi
 
