@@ -9,6 +9,9 @@ wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles
 echo "Descompriendo Dotfiles.zip"
 unzip Dotfiles.zip
 
+# Preguntar usuario
+read -p "¿Cual es tu usuario?: " usuario
+
 # Borrar configuraciones por defecto
 rm -rf /home/$usuario/.fluxbox
 rm -rf /home/$usuario/.config/lxterminal
@@ -16,7 +19,6 @@ rm -rf /home/$usuario/.config/gtk-3.0
 rm -rf /home/$usuario/.config/nvim
 
 # Mover configuraciones
-read -p "¿Cual es tu usuario?: " usuario
 echo "Moviendo configuraciones..."
 mv Dotfiles-main/.fluxbox/					/home/$usuario/
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
