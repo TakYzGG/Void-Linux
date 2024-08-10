@@ -166,7 +166,7 @@ fi
 
 if [ "$compilar" = "s" ]; then
 	echo "Instalando herramientas de compilacion..."
-	xbps-install -y gcc make pkg-config binutils glibc-devel
+	xbps-install -y gcc make pkg-config binutils glibc-devel libX11-devel libXft-devel libXrender-devel libXinerama-devel
 fi
 
 if [ "$kernel" = "s" ]; then
