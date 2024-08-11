@@ -1,6 +1,10 @@
 #!/bin/sh
 # Creador: TakYzGG
 
+# Programas que uso con i3
+echo "Descargando algunos programas..."
+xbps-install -y feh dmenu ranger cmus scrot
+
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
 wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles.zip

@@ -5,6 +5,10 @@
 echo "Descargando Dotfiles..."
 wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles.zip
 
+# Programas que uso con fluxbox
+echo "Descargando algunos programas..."
+xbps-install -y feh dmenu ranger cmus scrot
+
 # Descomprimir Dotfiles.zip
 echo "Descompriendo Dotfiles.zip"
 unzip Dotfiles.zip

@@ -98,31 +98,31 @@ if [ "$dewm" -eq 4 ]; then
 fi
 if [ "$dewm" -eq 5 ]; then
 	echo "Instalando i3wm..."
-	xbps-install -y lxterminal i3 i3blocks i3-gaps feh dmenu ranger
+	xbps-install -y lxterminal i3 i3blocks i3-gaps
 fi
 if [ "$dewm" -eq 6 ]; then
 	echo "Instalando qtile..."
-	xbps-install -y lxterminal qtile feh dmenu ranger
+	xbps-install -y lxterminal qtile
 fi
 if [ "$dewm" -eq 7 ]; then
 	echo "Instalando bspwm..."
-	xbps-install -y lxterminal bspwm sxhkd feh dmenu ranger
+	xbps-install -y lxterminal bspwm sxhkd
 fi
 if [ "$dewm" -eq 8 ]; then
 	echo "Instalando jwm..."
-	xbps-install -y lxterminal jwm feh dmenu ranger
+	xbps-install -y lxterminal jwm
 fi
 if [ "$dewm" -eq 9 ]; then
 	echo "Instalando icewm..."
-	xbps-install -y lxterminal icewm feh dmenu ranger
+	xbps-install -y lxterminal icewm
 fi
 if [ "$dewm" -eq 10 ]; then
 	echo "Instalando openbox..."
-	xbps-install -y lxterminal openbox feh dmenu ranger
+	xbps-install -y lxterminal openbox
 fi
 if [ "$dewm" -eq 11 ]; then
 	echo "Instalando fluxbox ..."
-	xbps-install -y lxterminal fluxbox feh dmenu ranger
+	xbps-install -y lxterminal fluxbox
 fi
 
 if [ "$nav" -eq 0 ]; then
