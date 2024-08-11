@@ -29,7 +29,6 @@ mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
 mv Dotfiles-main/.config/nvim				/home/$usuario/.config
 
-
 # Mover scripts de dmenu
 mv Dotfiles-main/dmenu-menus/*				/usr/local/bin
 chmod +x /usr/local/bin/*
@@ -41,6 +40,10 @@ mv Dotfiles-main/Wallpapers					/home/$usuario/
 # Mover fuentes
 echo "Moviendo fuentes..."
 mv Dotfiles-main/Fonts/*					/usr/share/fonts/
+
+# Crear carpetas
+echo "Creando carpetas..."
+mkdir /home/$usuario/Screenshots
 
 # Eliminar reciduos
 echo "Eliminando reciduos..."

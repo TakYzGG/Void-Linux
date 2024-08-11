@@ -46,6 +46,10 @@ mv Dotfiles-main/Wallpapers					/home/$usuario/
 echo "Moviendo fuentes..."
 mv Dotfiles-main/Fonts/*					/usr/share/fonts/
 
+# Crear carpetas
+echo "Creando carpetas..."
+mkdir /home/$usuario/Screenshots
+
 # Eliminar reciduos
 echo "Eliminando reciduos..."
 rm -rf Dotfiles.zip Dotfiles-main
