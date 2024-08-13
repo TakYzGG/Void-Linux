@@ -1,7 +1,21 @@
-# .bashrc
+# <-Configuracion de Bash->
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-alias ls='ls --color=auto'
+# Pront
 PS1='[\[\e[95m\]\u\[\e[94m\] \w\[\e[0m\]]\[\e[91m\]\\$\[\e[0m\] ' 
+
+# <-Alias->
+# Colores
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias lsa='ls -a'
+
+# Mejoras de uso
+alias rm='-iv'
+alias mv='-iv'
+alias cp='-iv'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Acortar comandos
+alias n='nvim'
+alias untar='tar xvf'
