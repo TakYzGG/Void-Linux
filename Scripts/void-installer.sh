@@ -20,6 +20,7 @@ echo "Elige un navegador web:\n0: Ninguno\n1: Firefox\n2: Chromium\n3: Dillo\n4:
 read -p "¿Cual quieres usar?: " nav
 read -p "¿Quieres instalar programas extra? (s/n): " programas
 read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
+read -p "¿Quieres instalar emuladores? (s/n): " emuladores
 read -p "¿Quieres instalar complementos para portatiles? (s/n): " portatil
 read -p "¿Quieres instalar herramientas basicas para compilar? (s/n): " compilar
 read -p "¿Quieres instalar el kernel lts? (s/n): " kernel
@@ -157,6 +158,11 @@ if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 
 		echo "Instalando libreoffice..."
 		xbps-install -y libreoffice
 	fi
+fi
+
+if [ "$emuladores" = "s" ]; then
+	echo "Instalando emuladores..."
+	xbps-install -y retroarch melonDS ppsspp mupen64plus
 fi
 
 if [ "$portatil" = "s" ]; then
