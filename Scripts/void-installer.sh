@@ -239,16 +239,6 @@ fi
 # Habilitar servicios
 sv enable NetworkManager
 
-# Crear carpetas de usuario
-echo "Creando carpetas de usuario..."
-mkdir /home/$usuario/Documentos
-mkdir /home/$usuario/Descargas
-mkdir /home/$usuario/Imagenes
-mkdir /home/$usuario/Escritorio
-mkdir /home/$usuario/Musica
-mkdir /home/$usuario/Plantilla
-mkdir /home/$usuario/Videos
-
 # Eliminar ttys de los servicios
 echo "Eliminando ttys..."
 rm -rf /var/service/agetty-tty3
