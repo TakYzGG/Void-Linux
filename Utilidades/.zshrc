@@ -6,7 +6,8 @@ PROMPT="[%F{magenta}%n%f %F{blue}%~%f]%F{red}$%f "
 # <-Alias->
 # Colores
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -l'
+alias lla='ls -la'
 alias lsa='ls -a'
 
 # Mejoras de uso
@@ -15,7 +16,8 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias mkdir='mkdir -pv'
 
 # Acortar comandos
-alias n='nvim'
+alias e='nvim'
 alias untar='tar xvf'
