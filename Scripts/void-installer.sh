@@ -2,7 +2,7 @@
 # Creador: TakYzGG
 
 # Variables
-kernelversion=6.6.x
+kernelversion=6.6
 zshrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.zshrc
 bashrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.bashrc
 xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
@@ -25,7 +25,7 @@ read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
 read -p "¿Quieres instalar emuladores? (s/n): " emuladores
 read -p "¿Quieres instalar complementos para portatiles? (s/n): " portatil
 read -p "¿Quieres instalar herramientas basicas para compilar? (s/n): " compilar
-echo "Elige una version del kernel linux:\n0: Kernel $kernelversion\n1: Kernel 5.15.x\n2: Kernel 5.10.x\n3: Kernel 5.4.x\n4: Kernel 4.19.x\n5: Kernel lts"
+echo "Elige una version del kernel linux:\n0: Kernel $kernelversion.x\n1: Kernel 5.15.x\n2: Kernel 5.10.x\n3: Kernel 5.4.x\n4: Kernel 4.19.x\n5: Kernel lts"
 read -p "¿Cual quieres usar?: " kernel
 read -p "¿Quieres instalar ufw? (s/n): " ufw
 read -p "¿Quieres instalar xdeb? (s/n): " xdeb
@@ -146,7 +146,7 @@ if [ "$compilar" = "s" ]; then
 fi
 
 case $kernel in
-	0) echo "Se usara el kernel $kernelversion" ;;
+	0) echo "Se usara el kernel $kernelversion.x" ;;
 	1) echo "Instalando kernel 5.15.x..."
 	   xbps-install -y linux5.15 ;;
 	   xbps-remove -RdFfy linux$kernelversion
