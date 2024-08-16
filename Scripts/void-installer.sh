@@ -148,15 +148,20 @@ fi
 case $kernel in
 	0) echo "Se usara el kernel $kernelversion" ;;
 	1) echo "Instalando kernel 5.15.x..."
-	   xbps-install kernel5.15 ;;
+	   xbps-install -y linux5.15 ;;
+	   xbps-remove -RdFfy linux$kernelversion
 	2) echo "Instalando kernel 5.10.x..."
-	   xbps-install kernel5.10 ;;
+	   xbps-install -y linux5.10 ;;
+	   xbps-remove -RdFfy linux$kernelversion
 	3) echo "Instalando kernel 5.4.x..."
-	   xbps-install kernel5.4 ;;
+	   xbps-install -y linux5.4 ;;
+	   xbps-remove -RdFfy linux$kernelversion
 	4) echo "Instalando kernel 4.19.x..."
-	   xbps-install kernel4.19 ;;
+	   xbps-install -y linux4.19 ;;
+	   xbps-remove -RdFfy linux$kernelversion
 	5) echo "Instalando kernel lts..."
-	   xbps-install kernel-lts ;;
+	   xbps-install -y linux-lts ;;
+	   xbps-remove -RdFfy linux$kernelversion
 esac
 
 if [ "$ufw" = "s" ]; then
