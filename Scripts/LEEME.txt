@@ -42,14 +42,32 @@ xinitrc:
 grub:
 
  <-Grub->
+config: /etc/default/grub
 1) GRUB_TIMEOUT=5 define el tiempo que tarda en iniciar el sistema de manera automatica
 2) GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4" es el nivel de regristro del grub 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"' desactiva el registro en pantalla al inicio
 3) "GRUB_TIMEOUT=0" , "GRUB_HIDDEN_TIMEOUT=0" y "GRUB_HIDDEN_TIMEOUT_QUIET=false" hacen que grub inicie el sistema de manera automatica
 
 ---------------------------------------------
 
+instalar paquetes .xbps
+
+1) sudo xbps-rindex --repository=<ruta/de/la/carpeta/>
+2) sudo xbps-install -R /ruta/de/la/carpeta -f <paquete-version>
+
+---------------------------------------------
+
 gtk config:
 
 cursor theme: https://www.gnome-look.org/p/1358330
+
+---------------------------------------------
+
+cmus: (reproductor de musica desde termial)
+
+---------------------------------------------
+
+yt-dlp: (descargar audio desde terminal)
+
+yt-dlp -x --audio-format mp3 <enlace de youtube>
 
 ---------------------------------------------

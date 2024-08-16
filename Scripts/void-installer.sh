@@ -2,10 +2,11 @@
 # Creador: TakYzGG
 
 # Variables
-xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
-zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
+kernelversion=6.6.x
 zshrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.zshrc
 bashrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.bashrc
+xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
+zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
 
 # Mensaje inicial
 echo "Iniciando instalacion..."
@@ -13,7 +14,8 @@ echo "Iniciando instalacion..."
 # Preguntas al usuario
 read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-read -p "¿Quieres usar Xinit o Lxdm? (xinit/lxdm): " init
+echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
+read -p "¿Cual quieres usar?: " init
 echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
 read -p "¿Cual quieres usar?: " dewm
 echo "Elige un navegador web:\n0: Ninguno\n1: Firefox\n2: Chromium\n3: Dillo\n4: Links"
@@ -23,7 +25,8 @@ read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
 read -p "¿Quieres instalar emuladores? (s/n): " emuladores
 read -p "¿Quieres instalar complementos para portatiles? (s/n): " portatil
 read -p "¿Quieres instalar herramientas basicas para compilar? (s/n): " compilar
-read -p "¿Quieres instalar el kernel lts? (s/n): " kernel
+echo "Elige una version del kernel linux:\n0: Kernel $kernelversion\n1: Kernel 5.15.x\n2: Kernel 5.10.x\n3: Kernel 5.4.x\n4: Kernel 4.19.x\n5: Kernel lts"
+read -p "¿Cual quieres usar?: " kernel
 read -p "¿Quieres instalar ufw? (s/n): " ufw
 read -p "¿Quieres instalar xdeb? (s/n): " xdeb
 read -p "¿Quieres instalar zram? (s/n): " zram
@@ -70,81 +73,50 @@ if [ "$nonfree" = "s" ]; then
 	xbps-install -y void-repo-nonfree
 fi
 
-if [ "$init" = "xinit" ]; then
-	echo "Instalando xinit..."
-	xbps-install -y xinit
-else
-	echo "Instalando lxdm..."
-	xbps-install lxdm
-fi
+case $init in
+	0) echo "Instalando xinit..."
+	   xbps-install -y xinit ;;
+	1) echo "Instalando lxdm..."
+	   xbps-install -y lxdm ;;
+esac
 
-if [ "$dewm" -eq 0 ]; then
-	echo "No se instalara entorno grafico"
-fi
-if [ "$dewm" -eq 1 ]; then
-	echo "Instalando lxde..."
-	xbps-install -y lxterminal lxde galculator xreader leafpad gparted xarchiver pavucontrol vlc audacious libreoffice
-fi
-if [ "$dewm" -eq 2 ]; then
-	echo "Instalando lxqt..."
-	xbps-install -y lxqt galculator xreader leafpad gparted pavucontrol vlc audacious libreoffice
-fi
-if [ "$dewm" -eq 3 ]; then
-	echo "Instalando mate..."
-	xbps-install -y mate-terminal mate galculator xreader pluma gparted xarchiver pavucontrol vlc audacious libreoffice
-fi
-if [ "$dewm" -eq 4 ]; then
-	echo "Instalando xfce..."
-	xbps-install -y xfce4 galculator xreader gparted xarchiver pavucontrol vlc audacious libreoffice 
-fi
-if [ "$dewm" -eq 5 ]; then
-	echo "Instalando i3wm..."
-	xbps-install -y lxterminal i3 i3blocks i3-gaps
-fi
-if [ "$dewm" -eq 6 ]; then
-	echo "Instalando qtile..."
-	xbps-install -y lxterminal qtile
-fi
-if [ "$dewm" -eq 7 ]; then
-	echo "Instalando bspwm..."
-	xbps-install -y lxterminal bspwm sxhkd
-fi
-if [ "$dewm" -eq 8 ]; then
-	echo "Instalando jwm..."
-	xbps-install -y lxterminal jwm
-fi
-if [ "$dewm" -eq 9 ]; then
-	echo "Instalando icewm..."
-	xbps-install -y lxterminal icewm
-fi
-if [ "$dewm" -eq 10 ]; then
-	echo "Instalando openbox..."
-	xbps-install -y lxterminal openbox
-fi
-if [ "$dewm" -eq 11 ]; then
-	echo "Instalando fluxbox ..."
-	xbps-install -y lxterminal fluxbox
-fi
+case $dewm in
+	0) echo "No se instalara entorno grafico" ;;
+	1) echo "Instalando lxde..."
+	   xbps-install -y lxterminal lxde galculator xreader leafpad gparted xarchiver pavucontrol vlc audacious ;;
+	2) echo "Instalando lxqt..."
+	   xbps-install -y lxqt galculator xreader leafpad gparted pavucontrol vlc audacious ;;
+	3) echo "Instalando mate..."
+	   xbps-install -y mate-terminal mate galculator xreader pluma gparted xarchiver pavucontrol vlc audacious ;;
+	4) echo "Instalando xfce..."
+	   xbps-install -y xfce4 galculator xreader gparted xarchiver pavucontrol vlc audacious ;;
+	5) echo "Instalando i3wm..."
+	  xbps-install -y lxterminal i3 i3blocks i3-gaps ;;
+	6) echo "Instalando qtile..."
+	   xbps-install -y lxterminal qtile ;;
+	7) echo "Instalando bspwm..."
+	   xbps-install -y lxterminal bspwm sxhkd ;;
+	8) echo "Instalando jwm..."
+	   xbps-install -y lxterminal jwm ;;
+	9) echo "Instalando icewm..."
+	   xbps-install -y lxterminal icewm ;;
+   10) echo "Instalando openbox..."
+	   xbps-install -y lxterminal openbox ;;
+   11) echo "Instalando fluxbox..."
+	   xbps-install -y lxterminal fluxbox ;;
+esac
 
-if [ "$nav" -eq 0 ]; then
-	echo "No se instalara navegador web"
-fi
-if [ "$nav" -eq 1 ]; then
-	echo "Instalando navegador web..."
-	xbps-install -y firefox
-fi
-if [ "$nav" -eq 2 ]; then
-	echo "Instalando navegador web..."
-	xbps-install -y chromium
-fi
-if [ "$nav" -eq 3 ]; then
-	echo "Instalando navegador web..."
-	xbps-install -y dillo
-fi
-if [ "$nav" -eq 4 ]; then
-	echo "Instalando navegador web..."
-	xbps-install -y links
-fi
+case $nav in
+	0) echo "No se instalara navegador web" ;;
+	1) echo "Instalando firefox..."
+	   xbps-install -y firefox ;;
+	2) echo "Instalando chromium..."
+	   xbps-install -y chromium ;;
+	3) echo "Instalando dillo..."
+	   xbps-install -y dillo ;;
+	4) echo "Instalando links..."
+	   xbps-install -y links ;;
+esac
 
 if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$programas" = "s" ]; then
@@ -153,12 +125,10 @@ if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 
 	fi
 fi
 
-if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$libreoffice" = "s" ]; then
 		echo "Instalando libreoffice..."
 		xbps-install -y libreoffice
 	fi
-fi
 
 if [ "$emuladores" = "s" ]; then
 	echo "Instalando emuladores..."
@@ -175,10 +145,19 @@ if [ "$compilar" = "s" ]; then
 	xbps-install -y gcc make pkg-config binutils glibc-devel libX11-devel libXft-devel libXrender-devel libXinerama-devel
 fi
 
-if [ "$kernel" = "s" ]; then
-	echo "Instalando kernel lts..."
-	xbps-install -y linux-lts
-fi
+case $kernel in
+	0) echo "Se usara el kernel $kernelversion" ;;
+	1) echo "Instalando kernel 5.15.x..."
+	   xbps-install kernel5.15 ;;
+	2) echo "Instalando kernel 5.10.x..."
+	   xbps-install kernel5.10 ;;
+	3) echo "Instalando kernel 5.4.x..."
+	   xbps-install kernel5.4 ;;
+	4) echo "Instalando kernel 4.19.x..."
+	   xbps-install kernel4.19 ;;
+	5) echo "Instalando kernel lts..."
+	   xbps-install kernel-lts ;;
+esac
 
 if [ "$ufw" = "s" ]; then
 	echo "Instalando ufw..."
@@ -238,7 +217,7 @@ ln -s /etc/sv/alsa					/var/service
 ln -s /etc/sv/NetworkManager		/var/service
 
 # Lxdm
-if [ "$init" = "lxdm" ]; then
+if [ "$init" -eq 1 ]; then
 ln -s /etc/sv/lxdm					/var/service
 fi
 
