@@ -20,14 +20,15 @@ read -p "¿Cual es tu usuario?: " usuario
 rm -rf /home/$usuario/.fluxbox
 rm -rf /home/$usuario/.config/lxterminal
 rm -rf /home/$usuario/.config/gtk-3.0
-rm -rf /home/$usuario/.config/nvim
+rm -rf /home/$usuario/.config/vim
 
 # Mover configuraciones
 echo "Moviendo configuraciones..."
 mv Dotfiles-main/.fluxbox/					/home/$usuario/
 mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
-mv Dotfiles-main/.config/nvim				/home/$usuario/.config
+mv Dotfiles-main/.config/vim/.vim			/home/$usuario/
+mv Dotfiles-main/.config/vim/.vimrc			/home/$usuario/
 
 # Mover scripts de dmenu
 mv Dotfiles-main/dmenu-menus/*				/usr/local/bin

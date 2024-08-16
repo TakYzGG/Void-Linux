@@ -4,8 +4,8 @@
 # Variables
 xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
 zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
-zshrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.zshrc
-bashrc=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/.bashrc
+zshrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.zshrc
+bashrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.bashrc
 
 # Mensaje inicial
 echo "Iniciando instalacion..."
@@ -54,7 +54,7 @@ xbps-install -y void-repo-multilib
 
 # Descargar paquetes
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xclip neovim python3 alsa-utils pulseaudio NetworkManager
+xbps-install -y xorg wget xclip vim python3 alsa-utils pulseaudio NetworkManager
 
 # Descargar compresores
 echo "Descargando compresores..."
