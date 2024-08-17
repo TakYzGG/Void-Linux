@@ -1,5 +1,4 @@
-#!/bin/sh
-# Creador: TakYzGG
+#!/bin/sh # Creador: TakYzGG
 
 # Variables
 kernelversion=6.6
@@ -35,12 +34,10 @@ read -p "¿Quieres instalar temas gtk? (s/n): " temas
 
 # Hacer que todas las respuestas sean minusculas
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
-init=$(echo "$init" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
 libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
 portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
 compilar=$(echo "$compilar" | tr '[:upper:]' '[:lower:]')
-kernel=$(echo "$kernel" | tr '[:upper:]' '[:lower:]')
 ufw=$(echo "$ufw" | tr '[:upper:]' '[:lower:]')
 xdeb=$(echo "$xdeb" | tr '[:upper:]' '[:lower:]')
 zram=$(echo "$zram" | tr '[:upper:]' '[:lower:]')
@@ -197,8 +194,7 @@ if [ "$zsh" = "s" ]; then
 	chsh -s /bin/zsh $usuario
 fi
 if [ "$zsh" = "s" ]; then
-	echo "Configurando zsh..."
-	wget $zshrc
+	echo "Configurando zsh..." wget $zshrc
 	cp .zshrc /home/$usuario
 	cp .zshrc /root
 else
