@@ -1,4 +1,5 @@
-#!/bin/sh # Creador: TakYzGG
+#!/bin/sh 
+# Creador: TakYzGG
 
 # Variables
 kernelversion=6.6
@@ -13,6 +14,8 @@ echo "Iniciando instalacion..."
 # Preguntas al usuario
 read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
+echo "¿Que hardware tienes?\n0: Intel\n1: Amd\n3: Intel y Amd\n4: Intel y Nvidia\n5: Amd y Nvidia "
+read -p "Elige una opcion: " hardware
 echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
 read -p "¿Cual quieres usar?: " init
 echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
@@ -75,6 +78,14 @@ case $init in
 	   xbps-install -y xinit ;;
 	1) echo "Instalando lxdm..."
 	   xbps-install -y lxdm ;;
+esac
+
+case $hardware in
+	0) xbps-remove -RFf linux-firmware-amd linux-firmware-nvidia ;;
+	1) xbps-remove -RFf linux-firmwate-intel linux-firmwate-nvidia ;;
+	2) xbps-remove -RFf linux-firmwate-nvidia ;;
+	3) xbps-remove -RFf linux-firmwate-amd ;;
+	4) xbps-remove -RFf linux-firmwate-intel ;;
 esac
 
 case $dewm in
