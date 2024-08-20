@@ -54,7 +54,7 @@ xbps-install -y void-repo-multilib
 
 # Descargar paquetes
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xclip vim python3 alsa-utils pulseaudio NetworkManager
+xbps-install -y xorg wget xclip vim-x11 python3 alsa-utils pulseaudio NetworkManager
 
 # Descargar compresores
 echo "Descargando compresores..."
