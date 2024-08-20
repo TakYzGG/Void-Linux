@@ -14,7 +14,7 @@ echo "Iniciando instalacion..."
 # Preguntas al usuario
 read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-echo "¿Que hardware tienes?\n0: Intel\n1: Amd\n3: Intel y Amd\n4: Intel y Nvidia\n5: Amd y Nvidia "
+echo "¿Que hardware tienes?\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
 read -p "Elige una opcion: " hardware
 echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
 read -p "¿Cual quieres usar?: " init
@@ -78,14 +78,21 @@ case $init in
 	   xbps-install -y xinit ;;
 	1) echo "Instalando lxdm..."
 	   xbps-install -y lxdm ;;
+	*) echo "Respuesta no valida" ;;
 esac
 
 case $hardware in
-	0) xbps-remove -RFf linux-firmware-amd linux-firmware-nvidia ;;
-	1) xbps-remove -RFf linux-firmwate-intel linux-firmwate-nvidia ;;
-	2) xbps-remove -RFf linux-firmwate-nvidia ;;
-	3) xbps-remove -RFf linux-firmwate-amd ;;
-	4) xbps-remove -RFf linux-firmwate-intel ;;
+	0) echo "Eliminando firmware de AMD y Nvidia..."
+	   xbps-remove -RFf linux-firmware-amd linux-firmware-nvidia ;;
+	1) echo "Eliminando firmware de Intel y Nvidia..."
+	   xbps-remove -RFf linux-firmware-intel linux-firmware-nvidia ;;
+	2) echo "Eliminando firmware de Nvidia"
+	   xbps-remove -RFf linux-firmware-nvidia ;;
+	3) echo "Eliminando firmware de AMD"
+	   xbps-remove -RFf linux-firmware-amd ;;
+	4) echo "Eliminando firmware de Intel"
+	   xbps-remove -RFf linux-firmware-intel ;;
+	*) echo "Respuesta no valida" ;;
 esac
 
 case $dewm in
@@ -112,6 +119,7 @@ case $dewm in
 	   xbps-install -y lxterminal openbox ;;
    11) echo "Instalando fluxbox..."
 	   xbps-install -y lxterminal fluxbox ;;
+   *) echo "Respuesta no valida" ;;
 esac
 
 case $nav in
@@ -124,6 +132,7 @@ case $nav in
 	   xbps-install -y dillo ;;
 	4) echo "Instalando links..."
 	   xbps-install -y links ;;
+	*) echo "Respuesta no valida" ;;
 esac
 
 if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
@@ -170,6 +179,7 @@ case $kernel in
 	5) echo "Instalando kernel lts..."
 	   xbps-install -y linux-lts ;;
 	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
+	*) echo "Respuesta no valida" ;;
 esac
 
 if [ "$ufw" = "s" ]; then
