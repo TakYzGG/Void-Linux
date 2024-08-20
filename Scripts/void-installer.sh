@@ -80,13 +80,13 @@ esac
 case $dewm in
 	0) echo "No se instalara entorno grafico" ;;
 	1) echo "Instalando lxde..."
-	   xbps-install -y lxterminal lxde galculator xreader leafpad gparted xarchiver pavucontrol vlc audacious ;;
+	   xbps-install -y lxterminal lxde galculator xreader leafpad gparted xarchiver pavucontrol mpv audacious ;;
 	2) echo "Instalando lxqt..."
-	   xbps-install -y lxqt galculator xreader leafpad gparted pavucontrol vlc audacious ;;
+	   xbps-install -y lxqt galculator xreader leafpad gparted pavucontrol mpv audacious ;;
 	3) echo "Instalando mate..."
-	   xbps-install -y mate-terminal mate galculator xreader pluma gparted xarchiver pavucontrol vlc audacious ;;
+	   xbps-install -y mate-terminal mate galculator xreader pluma gparted xarchiver pavucontrol mpv audacious ;;
 	4) echo "Instalando xfce..."
-	   xbps-install -y xfce4 galculator xreader gparted xarchiver pavucontrol vlc audacious ;;
+	   xbps-install -y xfce4 galculator xreader gparted xarchiver pavucontrol mpv audacious ;;
 	5) echo "Instalando i3wm..."
 	  xbps-install -y lxterminal i3 i3blocks i3-gaps ;;
 	6) echo "Instalando qtile..."
@@ -118,7 +118,7 @@ esac
 if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$programas" = "s" ]; then
 		echo "Instalando programas extra..."
-		xbps-install -y ssr btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol vlc audacious lxappearance
+		xbps-install -y ssr btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol mpv audacious lxappearance
 	fi
 fi
 
