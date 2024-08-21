@@ -67,12 +67,13 @@ xbps-install -y xz zip unzip p7zip
 echo "Añadiendo compatibilidad con exfat..."
 xbps-install -y exfat-utils
 
-# Descargas de las preguntas
+# Añadir repo nonfree
 if [ "$nonfree" = "s" ]; then
 	echo "Añadiendo repocitorio nonfree..."
 	xbps-install -y void-repo-nonfree
 fi
 
+# Instalar xinit / lxdm
 case $init in
 	0) echo "Instalando xinit..."
 	   xbps-install -y xinit ;;
@@ -81,6 +82,7 @@ case $init in
 	*) echo "Respuesta no valida" ;;
 esac
 
+# Eliminar firmware innecesario
 case $hardware in
 	0) echo "Eliminando firmware de AMD y Nvidia..."
 	   xbps-remove -RFf linux-firmware-amd linux-firmware-nvidia ;;
@@ -95,16 +97,17 @@ case $hardware in
 	*) echo "Respuesta no valida" ;;
 esac
 
+# Instalar DE / WM 
 case $dewm in
 	0) echo "No se instalara entorno grafico" ;;
 	1) echo "Instalando lxde..."
-	   xbps-install -y lxterminal lxde galculator xreader leafpad gparted xarchiver pavucontrol mpv audacious ;;
+	   xbps-install -y lxterminal lxde galculator mupdf leafpad gparted xarchiver pavucontrol mpv audacious ;;
 	2) echo "Instalando lxqt..."
-	   xbps-install -y lxqt galculator xreader leafpad gparted pavucontrol mpv audacious ;;
+	   xbps-install -y lxqt galculator mupdf leafpad gparted pavucontrol mpv audacious ;;
 	3) echo "Instalando mate..."
-	   xbps-install -y mate-terminal mate galculator xreader pluma gparted xarchiver pavucontrol mpv audacious ;;
+	   xbps-install -y mate-terminal mate galculator mupdf pluma gparted xarchiver pavucontrol mpv audacious ;;
 	4) echo "Instalando xfce..."
-	   xbps-install -y xfce4 galculator xreader gparted xarchiver pavucontrol mpv audacious ;;
+	   xbps-install -y xfce4 galculator mupdf gparted xarchiver pavucontrol mpv audacious ;;
 	5) echo "Instalando i3wm..."
 	  xbps-install -y lxterminal i3 i3blocks i3-gaps ;;
 	6) echo "Instalando qtile..."
@@ -122,6 +125,7 @@ case $dewm in
    *) echo "Respuesta no valida" ;;
 esac
 
+# Instalar navegador
 case $nav in
 	0) echo "No se instalara navegador web" ;;
 	1) echo "Instalando firefox..."
@@ -135,33 +139,39 @@ case $nav in
 	*) echo "Respuesta no valida" ;;
 esac
 
+# Instalar programas extras (si es necesario)
 if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$programas" = "s" ]; then
 		echo "Instalando programas extra..."
-		xbps-install -y ssr btop galculator xreader mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol mpv audacious lxappearance
+		xbps-install -y ssr btop galculator mupdf mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol mpv audacious lxappearance
 	fi
 fi
 
+# Instalar libreoffice
 	if [ "$libreoffice" = "s" ]; then
 		echo "Instalando libreoffice..."
 		xbps-install -y libreoffice
 	fi
 
+# Instalar emuladores
 if [ "$emuladores" = "s" ]; then
 	echo "Instalando emuladores..."
 	xbps-install -y retroarch melonDS ppsspp mupen64plus
 fi
 
+# Instalar controlador de brillo y bateria
 if [ "$portatil" = "s" ]; then
 	echo "Instalando complementos para portatiles..."
 	xbps-install -y brightnessctl acpi
 fi
 
+# Instalar herramientas de compilacion
 if [ "$compilar" = "s" ]; then
 	echo "Instalando herramientas de compilacion..."
 	xbps-install -y gcc make pkg-config binutils glibc-devel libX11-devel libXft-devel libXrender-devel libXinerama-devel
 fi
 
+# Instalar verion del kernel y eliminar la por defecto
 case $kernel in
 	0) echo "Se usara el kernel $kernelversion.x" ;;
 	1) echo "Instalando kernel 5.15.x..."
@@ -182,6 +192,7 @@ case $kernel in
 	*) echo "Respuesta no valida" ;;
 esac
 
+# Instalar ufw
 if [ "$ufw" = "s" ]; then
 	echo "Instalando ufw..."
 	xbps-install -y ufw
@@ -193,6 +204,7 @@ if [ "$ufw" = "s" ]; then
 	ufw enable
 fi
 
+# Instalar xdeb
 if [ "$xdeb" = "s" ]; then
 	echo "Instalando xdeb..."
 	wget $xdebp
@@ -200,6 +212,7 @@ if [ "$xdeb" = "s" ]; then
 	chmod +x /usr/local/bin/xdeb
 fi
 
+# Instalar zram
 if [ "$zram" = "s" ]; then
 	echo "Instalando zram..."
 	wget $zramp
@@ -208,12 +221,15 @@ if [ "$zram" = "s" ]; then
 	echo "/usr/local/bin/zram start" >> /etc/rc.local
 fi
 
+# Instalar zsh
 if [ "$zsh" = "s" ]; then
 	echo "Instalando zsh..."
 	xbps-install -y zsh
 	chsh -s /bin/zsh
 	chsh -s /bin/zsh $usuario
 fi
+
+# Configurar bash / zsh
 if [ "$zsh" = "s" ]; then
 	echo "Configurando zsh..." wget $zshrc
 	cp .zshrc /home/$usuario
@@ -227,6 +243,7 @@ else
 	cp .bashrc /root
 fi
 
+# Instalar temas gtk
 if [ "$temas" = "s" ]; then
 	echo "Instalando temas..."
 	xbps-install -y arc-theme papirus-icon-theme
