@@ -7,7 +7,7 @@ wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles
 
 # Programas que uso con fluxbox
 echo "Descargando algunos programas..."
-xbps-install -y feh dmenu ranger cmus scrot
+xbps-install -y feh dmenu vifm cmus scrot
 
 # Descomprimir Dotfiles.zip
 echo "Descompriendo Dotfiles.zip"
