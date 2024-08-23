@@ -3,7 +3,7 @@
 
 # Programas que uso con i3
 echo "Descargando algunos programas..."
-xbps-install -y feh dmenu ranger cmus scrot
+xbps-install -y feh dmenu vifm cmus scrot
 
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
@@ -31,6 +31,7 @@ mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
 mv Dotfiles-main/.config/vim/.vim			/home/$usuario/
 mv Dotfiles-main/.config/vim/.vimrc			/home/$usuario/
+mv Dotfiles-main/.config/vifm/				/home/$usuario/.config
 
 # Dar permisos a los modulos de i3blocks
 chmod +x /home/$usuario/.config/i3blocks/modulos/*
