@@ -21,7 +21,9 @@ rm -rf /home/$usuario/.config/i3
 rm -rf /home/$usuario/.config/i3blocks
 rm -rf /home/$usuario/.config/lxterminal
 rm -rf /home/$usuario/.config/gtk-3.0
-rm -rf /home/$usuario/.config/vim
+rm -rf /home/$usuario/.config/.vim
+rm -rf /home/$usuario/.config/.vimrc
+rm -rf /home/$usuario/.config/.vifmrc
 
 # Mover configuraciones
 echo "Moviendo configuraciones..."
@@ -31,7 +33,7 @@ mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
 mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
 mv Dotfiles-main/.config/vim/.vim			/home/$usuario/
 mv Dotfiles-main/.config/vim/.vimrc			/home/$usuario/
-mv Dotfiles-main/.config/vifm/				/home/$usuario/.config
+mv Dotfiles-main/.config/vifm/*				/home/$usuario/.config
 
 # Dar permisos a los modulos de i3blocks
 chmod +x /home/$usuario/.config/i3blocks/modulos/*
