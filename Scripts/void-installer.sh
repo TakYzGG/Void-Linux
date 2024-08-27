@@ -258,13 +258,14 @@ ln -s /etc/sv/alsa					/var/service
 
 # Network Manager
 if [ "$wifi" = "s" ]; then
-ln -s /etc/sv/NetworkManager		/var/service
-sv enable NetworkManager
+	xbps-install -y NetworkManager
+	ln -s /etc/sv/NetworkManager		/var/service
+	sv enable NetworkManager
 fi
 
 # Lxdm
 if [ "$init" -eq 1 ]; then
-ln -s /etc/sv/lxdm					/var/service
+	ln -s /etc/sv/lxdm					/var/service
 fi
 
 # Eliminar ttys de los servicios

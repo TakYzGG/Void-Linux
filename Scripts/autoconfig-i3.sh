@@ -21,9 +21,9 @@ rm -rf /home/$usuario/.config/i3
 rm -rf /home/$usuario/.config/i3blocks
 rm -rf /home/$usuario/.config/lxterminal
 rm -rf /home/$usuario/.config/gtk-3.0
-rm -rf /home/$usuario/.config/.vim
-rm -rf /home/$usuario/.config/.vimrc
-rm -rf /home/$usuario/.config/.vifmrc
+rm -rf /home/$usuario/.vim
+rm -rf /home/$usuario/.vimrc
+rm -rf /home/$usuario/.config/vifm
 
 # Mover configuraciones
 echo "Moviendo configuraciones..."
