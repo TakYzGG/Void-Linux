@@ -16,6 +16,7 @@ read -p "¿Cual es tu usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
 echo "¿Que hardware tienes?\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
 read -p "Elige una opcion: " hardware
+read -p "¿Quieres usar internet por wifi? (s/n): " wifi
 echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
 read -p "¿Cual quieres usar?: " init
 echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
@@ -37,6 +38,7 @@ read -p "¿Quieres instalar temas gtk? (s/n): " temas
 
 # Hacer que todas las respuestas sean minusculas
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
+wifi=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
 libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
 portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
@@ -55,9 +57,8 @@ xbps-install -Suy
 echo "Añadiendo repocitorio multilib..."
 xbps-install -y void-repo-multilib
 
-# Descargar paquetes
-echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xclip vim-x11 python3 alsa-utils pulseaudio NetworkManager
+# Descargar paquetes echo "Descargando paquetes basicos..."
+xbps-install -y xorg wget xclip vim-x11 python3 alsa-utils pulseaudio
 
 # Descargar compresores
 echo "Descargando compresores..."
@@ -175,8 +176,7 @@ fi
 
 # Instalar verion del kernel y eliminar la por defecto
 case $kernel in
-	0) echo "Se usara el kernel $kernelversion.x" ;;
-	1) echo "Instalando kernel 5.15.x..."
+	0) echo "Se usara el kernel $kernelversion.x" ;; 1) echo "Instalando kernel 5.15.x..."
 	   xbps-install -y linux5.15 ;;
 	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
 	2) echo "Instalando kernel 5.10.x..."
@@ -255,15 +255,17 @@ fi
 echo "Creando servicios..."
 ln -s /etc/sv/dbus					/var/service
 ln -s /etc/sv/alsa					/var/service
+
+# Network Manager
+if [ "$wifi" = "s" ]; then
 ln -s /etc/sv/NetworkManager		/var/service
+sv enable NetworkManager
+fi
 
 # Lxdm
 if [ "$init" -eq 1 ]; then
 ln -s /etc/sv/lxdm					/var/service
 fi
-
-# Habilitar servicios
-sv enable NetworkManager
 
 # Eliminar ttys de los servicios
 echo "Eliminando ttys..."
