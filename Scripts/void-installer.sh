@@ -2,7 +2,7 @@
 # Creador: TakYzGG
 
 # Variables
-kernelversion=6.6
+kernelversion=$(uname -r | awk -F. '{print $1"."$2}')
 zshrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.zshrc
 bashrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.bashrc
 xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
@@ -20,7 +20,7 @@ echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
 read -p "¿Cual quieres usar?: " init
 echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
 read -p "¿Cual quieres usar?: " dewm
-echo "Elige un navegador web:\n0: Ninguno\n1: Firefox\n2: Chromium\n3: Dillo\n4: Links"
+echo "Elige un navegador web:\n0: Ninguno\n1: Firefox\n2: Chromium\n3: Midori\n4: Dillo\n5: Links"
 read -p "¿Cual quieres usar?: " nav
 read -p "¿Quieres instalar programas extra? (s/n): " programas
 read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
@@ -132,9 +132,11 @@ case $nav in
 	   xbps-install -y firefox ;;
 	2) echo "Instalando chromium..."
 	   xbps-install -y chromium ;;
-	3) echo "Instalando dillo..."
+	3) echo "Instalando midori..."
+	   xbps-install -y midori ;;
+	4) echo "Instalando dillo..."
 	   xbps-install -y dillo ;;
-	4) echo "Instalando links..."
+	5) echo "Instalando links..."
 	   xbps-install -y links ;;
 	*) echo "Respuesta no valida" ;;
 esac
