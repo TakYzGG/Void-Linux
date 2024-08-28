@@ -2,11 +2,18 @@
 # Creador: TakYzGG
 
 # Variables
+root=$(whoami)
 kernelversion=$(uname -r | awk -F. '{print $1"."$2}')
 zshrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.zshrc
 bashrc=https://raw.githubusercontent.com/TakYzGG/Dotfiles/main/.bashrc
 xdebp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/xdeb
 zramp=https://raw.githubusercontent.com/TakYzGG/Void-Linux/main/Utilidades/zram
+
+# Comprobar que se esta ejecutando como root
+if [ "$root" != "root" ]; then
+	echo "Este script necesita permisos de root"
+	exit 1 
+fi
 
 # Mensaje inicial
 echo "Iniciando instalacion..."
@@ -271,8 +278,7 @@ fi
 # Eliminar ttys de los servicios
 echo "Eliminando ttys..."
 rm -rf /var/service/agetty-tty3
-rm -rf /var/service/agetty-tty4
-rm -rf /var/service/agetty-tty5
+rm -rf /var/service/agetty-tty4 rm -rf /var/service/agetty-tty5
 rm -rf /var/service/agetty-tty6
 
 # Mensaje final

@@ -1,6 +1,15 @@
 #!/bin/sh
 # Creador: TakYzGG
 
+# Variables
+root=$(whoami)
+
+# Comprobar que se esta ejecutando como root
+if [ "$root" != "root" ]; then
+	echo "Este script necesita permisos de root"
+	exit 1 
+fi
+
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
 wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles.zip

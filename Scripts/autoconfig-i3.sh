@@ -1,6 +1,15 @@
 #!/bin/sh
 # Creador: TakYzGG
 
+# Variables
+root=$(whoami)
+
+# Comprobar que se esta ejecutando como root
+if [ "$root" != "root" ]; then
+	echo "Este script necesita permisos de root"
+	exit 1 
+fi
+
 # Programas que uso con i3
 echo "Descargando algunos programas..."
 xbps-install -y feh dmenu vifm cmus scrot
