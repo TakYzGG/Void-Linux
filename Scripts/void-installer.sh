@@ -180,7 +180,7 @@ case $nav in
 	*) echo "Respuesta no valida" ;;
 esac
 # Instalar programas extras (si es necesario)
-if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
+if [ "$dewm" -gt 5 ] && [ "$dewm" -lt 11 ]; then
 	if [ "$programas" = "s" ]; then
 		echo "Instalando programas extra..."
 		xbps-install -y ssr btop galculator mupdf mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol mpv audacious lxappearance
