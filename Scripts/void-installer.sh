@@ -16,81 +16,85 @@ if [ "$root" != "root" ]; then
 fi
 
 # Mensaje inicial
-echo "Iniciando instalacion..."
+echo "Bienvenido al instalador de Void Linux"
+echo "Este script da al usuario multiples opciones para instalar mas facil y rapido Void Linux net install"
+echo "Creado por: TakYzGG"
+echo "https://github.com/TakYzGG"
 
 # Preguntas al usuario
-read -p "¿Cual es tu usuario?: " usuario
+# Usuario, repos y hardware
+read -p "¿Cual es tu nombre de usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-echo "¿Que hardware tienes?\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
+echo "¿seleccione su hardware?\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
 read -p "Elige una opcion: " hardware
-read -p "¿Quieres usar internet por wifi? (s/n): " wifi
+# Init y de/wm
 echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
 read -p "¿Cual quieres usar?: " init
 echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
 read -p "¿Cual quieres usar?: " dewm
+# Controladores
+read -p "¿Quieres instalar controladores para bluetooch?  (s/n): " bluetooch
+read -p "¿Quieres instalar controladores para bateria y brillo? (s/n): " portatil
+read -p "¿Quieres instalar controladores para wifi? (s/n): " wifi
+# Programas
 echo "Elige un navegador web:\n0: Ninguno\n1: Firefox\n2: Chromium\n3: Midori\n4: Dillo\n5: Links"
 read -p "¿Cual quieres usar?: " nav
-read -p "¿Quieres instalar programas extra? (s/n): " programas
+read -p "¿Quieres instalar programas extra (para wm)? (s/n): " programas
 read -p "¿Quieres instalar libreoffice? (s/n): " libreoffice
 read -p "¿Quieres instalar emuladores? (s/n): " emuladores
-read -p "¿Quieres instalar complementos para portatiles? (s/n): " portatil
-read -p "¿Quieres instalar herramientas basicas para compilar? (s/n): " compilar
-echo "Elige una version del kernel linux:\n0: Kernel $kernelversion.x\n1: Kernel 5.15.x\n2: Kernel 5.10.x\n3: Kernel 5.4.x\n4: Kernel 4.19.x\n5: Kernel lts"
-read -p "¿Cual quieres usar?: " kernel
-read -p "¿Quieres instalar ufw? (s/n): " ufw
-read -p "¿Quieres instalar xdeb? (s/n): " xdeb
-read -p "¿Quieres instalar zram? (s/n): " zram
-read -p "¿Quieres instalar zsh? (s/n): " zsh
+read -p "¿Quieres instalar ufw (firewall)? (s/n): " ufw
 read -p "¿Quieres instalar temas gtk? (s/n): " temas
+# Utilidades
+read -p "¿Quieres instalar herramientas basicas para compilar? (s/n): " compilar
+read -p "¿Quieres instalar xdeb? (s/n): " xdeb
+read -p "¿Quieres instalar zsh? (s/n): " zsh
+read -p "¿Quieres instalar zram? (s/n): " zram
+# Kernel
+echo "Elige una version del kernel linux:\n0: Kernel default\n1: Kernel 5.15.x\n2: Kernel 5.10.x\n3: Kernel 5.4.x\n4: Kernel 4.19.x\n5: Kernel lts"
+read -p "¿Cual quieres usar?: " kernel
 
 # Hacer que todas las respuestas sean minusculas
+# Usuario, repos y hardware
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
+# Controladores 
 wifi=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
+bluetooch=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
+portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
+# Programas
+ufw=$(echo "$ufw" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
 libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
-portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
+emuladores=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
+temas=$(echo "$temas" | tr '[:upper:]' '[:lower:]')
+# Utilidades
 compilar=$(echo "$compilar" | tr '[:upper:]' '[:lower:]')
-ufw=$(echo "$ufw" | tr '[:upper:]' '[:lower:]')
 xdeb=$(echo "$xdeb" | tr '[:upper:]' '[:lower:]')
 zram=$(echo "$zram" | tr '[:upper:]' '[:lower:]')
 zsh=$(echo "$zsh" | tr '[:upper:]' '[:lower:]')
-temas=$(echo "$temas" | tr '[:upper:]' '[:lower:]')
 
+# Inicia la instalacion
 # Actualizar el sistema
 echo "Actualizando el sistema..."
 xbps-install -Suy
-
 # Añadir repocitorio multilib
 echo "Añadiendo repocitorio multilib..."
 xbps-install -y void-repo-multilib
-
 # Descargar paquetes 
 echo "Descargando paquetes basicos..."
 xbps-install -y xorg wget xclip vim-x11 python3 alsa-utils pulseaudio
-
 # Descargar compresores
 echo "Descargando compresores..."
 xbps-install -y xz zip unzip p7zip
-
 # Añadir compatibilidad con exfat
 echo "Añadiendo compatibilidad con exfat..."
 xbps-install -y exfat-utils
 
+# Usuario, repos y hardware
 # Añadir repo nonfree
 if [ "$nonfree" = "s" ]; then
 	echo "Añadiendo repocitorio nonfree..."
 	xbps-install -y void-repo-nonfree
 fi
-
-# Instalar xinit / lxdm
-case $init in
-	0) echo "Instalando xinit..."
-	   xbps-install -y xinit ;;
-	1) echo "Instalando lxdm..."
-	   xbps-install -y lxdm ;;
-	*) echo "Respuesta no valida" ;;
-esac
-
 # Eliminar firmware innecesario
 case $hardware in
 	0) echo "Eliminando firmware de AMD y Nvidia..."
@@ -106,6 +110,15 @@ case $hardware in
 	*) echo "Respuesta no valida" ;;
 esac
 
+# Init y de/wm
+# Instalar xinit / lxdm
+case $init in
+	0) echo "Instalando xinit..."
+	   xbps-install -y xinit ;;
+	1) echo "Instalando lxdm..."
+	   xbps-install -y lxdm ;;
+	*) echo "Respuesta no valida" ;;
+esac
 # Instalar DE / WM 
 case $dewm in
 	0) echo "No se instalara entorno grafico" ;;
@@ -134,6 +147,23 @@ case $dewm in
    *) echo "Respuesta no valida" ;;
 esac
 
+# Controladores
+# Instalar controladores de bluetooch
+if [ "$bluetooch" = 's' ]; then
+	echo "Instalando controladores para bluetooch..."
+	xbps-install -y blueman
+# Instalar controladores de bateria y brillo
+if [ "$portatil" = "s" ]; then
+	echo "Instalando controladores para bateria y brillo..."
+	xbps-install -y brightnessctl acpi
+fi
+# Instalar controladores de wifi
+if [ "$wifi" = "s" ]; then
+	echo "Instalando controladores para wifi..."
+	xbps-install -y NetworkManager
+fi
+
+# Programas
 # Instalar navegador
 case $nav in
 	0) echo "No se instalara navegador web" ;;
@@ -149,7 +179,6 @@ case $nav in
 	   xbps-install -y links ;;
 	*) echo "Respuesta no valida" ;;
 esac
-
 # Instalar programas extras (si es necesario)
 if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 8 ] || [ "$dewm" -eq 9 ] || [ "$dewm" -eq 10 ] || [ "$dewm" -eq 11 ]; then
 	if [ "$programas" = "s" ]; then
@@ -157,34 +186,67 @@ if [ "$dewm" -eq 5 ] || [ "$dewm" -eq 6 ] || [ "$dewm" -eq 7 ] || [ "$dewm" -eq 
 		xbps-install -y ssr btop galculator mupdf mirage arandr leafpad gparted xarchiver Thunar thunar-volman thunar-archive-plugin pavucontrol mpv audacious lxappearance
 	fi
 fi
-
 # Instalar libreoffice
 	if [ "$libreoffice" = "s" ]; then
 		echo "Instalando libreoffice..."
 		xbps-install -y libreoffice
 	fi
-
 # Instalar emuladores
 if [ "$emuladores" = "s" ]; then
 	echo "Instalando emuladores..."
 	xbps-install -y retroarch melonDS ppsspp mupen64plus
 fi
-
-# Instalar controlador de brillo y bateria
-if [ "$portatil" = "s" ]; then
-	echo "Instalando complementos para portatiles..."
-	xbps-install -y brightnessctl acpi
+# Instalar ufw
+if [ "$ufw" = "s" ]; then
+	echo "Instalando ufw..."
+	xbps-install -y ufw
+	echo "Configurando ufw..."
+	ufw allow http
+	ufw allow https
+	ufw default deny incoming
+	ufw default allow outgoing
+	ufw enable
+fi
+# Instalar temas gtk
+if [ "$temas" = "s" ]; then
+	echo "Instalando temas..."
+	xbps-install -y arc-theme papirus-icon-theme
 fi
 
+# Utilidades
 # Instalar herramientas de compilacion
 if [ "$compilar" = "s" ]; then
 	echo "Instalando herramientas de compilacion..."
 	xbps-install -y gcc make pkg-config binutils glibc-devel libX11-devel libXft-devel libXrender-devel libXinerama-devel
 fi
+# Instalar xdeb
+if [ "$xdeb" = "s" ]; then
+	echo "Instalando xdeb..."
+	wget $xdebp
+	mv xdeb /usr/local/bin
+	chmod +x /usr/local/bin/xdeb
+fi
+# Instalar zram
+if [ "$zram" = "s" ]; then
+	echo "Instalando zram..."
+	wget $zramp
+	mv zram /usr/local/bin
+	chmod +x /usr/local/bin/zram
+	echo "/usr/local/bin/zram start" >> /etc/rc.local
+fi
+# Instalar zsh
+if [ "$zsh" = "s" ]; then
+	echo "Instalando zsh..."
+	xbps-install -y zsh
+	chsh -s /bin/zsh
+	chsh -s /bin/zsh $usuario
+fi
 
+# Kernel
 # Instalar verion del kernel y eliminar la por defecto
 case $kernel in
-	0) echo "Se usara el kernel $kernelversion.x" ;; 1) echo "Instalando kernel 5.15.x..."
+	0) echo "Se usara el kernel $kernelversion.x" ;;
+	1) echo "Instalando kernel 5.15.x..."
 	   xbps-install -y linux5.15 ;;
 	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
 	2) echo "Instalando kernel 5.10.x..."
@@ -202,43 +264,7 @@ case $kernel in
 	*) echo "Respuesta no valida" ;;
 esac
 
-# Instalar ufw
-if [ "$ufw" = "s" ]; then
-	echo "Instalando ufw..."
-	xbps-install -y ufw
-	echo "Configurando ufw..."
-	ufw allow http
-	ufw allow https
-	ufw default deny incoming
-	ufw default allow outgoing
-	ufw enable
-fi
-
-# Instalar xdeb
-if [ "$xdeb" = "s" ]; then
-	echo "Instalando xdeb..."
-	wget $xdebp
-	mv xdeb /usr/local/bin
-	chmod +x /usr/local/bin/xdeb
-fi
-
-# Instalar zram
-if [ "$zram" = "s" ]; then
-	echo "Instalando zram..."
-	wget $zramp
-	mv zram /usr/local/bin
-	chmod +x /usr/local/bin/zram
-	echo "/usr/local/bin/zram start" >> /etc/rc.local
-fi
-
-# Instalar zsh
-if [ "$zsh" = "s" ]; then
-	echo "Instalando zsh..."
-	xbps-install -y zsh
-	chsh -s /bin/zsh
-	chsh -s /bin/zsh $usuario
-fi
-
+# Configuraciones
 # Configurar bash / zsh
 if [ "$zsh" = "s" ]; then
 	echo "Configurando zsh..." wget $zshrc
@@ -253,29 +279,20 @@ else
 	cp .bashrc /root
 fi
 
-# Instalar temas gtk
-if [ "$temas" = "s" ]; then
-	echo "Instalando temas..."
-	xbps-install -y arc-theme papirus-icon-theme
-fi
-
+# Servicios
 # Mover servicios a /var/service
 echo "Creando servicios..."
 ln -s /etc/sv/dbus					/var/service
 ln -s /etc/sv/alsa					/var/service
-
 # Network Manager
 if [ "$wifi" = "s" ]; then
-	xbps-install -y NetworkManager
 	ln -s /etc/sv/NetworkManager		/var/service
 	sv enable NetworkManager
 fi
-
 # Lxdm
 if [ "$init" -eq 1 ]; then
 	ln -s /etc/sv/lxdm					/var/service
 fi
-
 # Eliminar ttys de los servicios
 echo "Eliminando ttys..."
 rm -rf /var/service/agetty-tty3
