@@ -33,7 +33,7 @@ read -p "¿Cual quieres usar?: " init
 echo "Elige un Escritorio o un Windows Manager:\n0:  Ninguno\n1:  Lxde\n2:  Lxqt\n3:  Mate \n4:  Xfce\n5:  I3wm\n6:  Qtile\n7:  Bspwm\n8:  Jwm\n9:  Icewm\n10: Openbox\n11: Fluxbox"
 read -p "¿Cual quieres usar?: " dewm
 # Controladores
-read -p "¿Quieres instalar controladores para bluetooch?  (s/n): " bluetooch
+read -p "¿Quieres instalar controladores para bluetooth?  (s/n): " bluetooth
 read -p "¿Quieres instalar controladores para bateria y brillo? (s/n): " portatil
 read -p "¿Quieres instalar controladores para wifi? (s/n): " wifi
 # Programas
@@ -57,14 +57,14 @@ read -p "¿Cual quieres usar?: " kernel
 # Usuario, repos y hardware
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
 # Controladores 
-wifi=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
-bluetooch=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
+wifi=$(echo "$wifi" | tr '[:upper:]' '[:lower:]')
+bluetooth=$(echo "$bluetooth" | tr '[:upper:]' '[:lower:]')
 portatil=$(echo "$portatil" | tr '[:upper:]' '[:lower:]')
 # Programas
 ufw=$(echo "$ufw" | tr '[:upper:]' '[:lower:]')
 programas=$(echo "$programas" | tr '[:upper:]' '[:lower:]')
 libreoffice=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
-emuladores=$(echo "$libreoffice" | tr '[:upper:]' '[:lower:]')
+emuladores=$(echo "$emuladores" | tr '[:upper:]' '[:lower:]')
 temas=$(echo "$temas" | tr '[:upper:]' '[:lower:]')
 # Utilidades
 compilar=$(echo "$compilar" | tr '[:upper:]' '[:lower:]')
@@ -148,10 +148,11 @@ case $dewm in
 esac
 
 # Controladores
-# Instalar controladores de bluetooch
-if [ "$bluetooch" = 's' ]; then
-	echo "Instalando controladores para bluetooch..."
+# Instalar controladores de bluetooth
+if [ "$bluetooth" = "s" ]; then
+	echo "Instalando controladores para bluetooth..."
 	xbps-install -y blueman
+fi
 # Instalar controladores de bateria y brillo
 if [ "$portatil" = "s" ]; then
 	echo "Instalando controladores para bateria y brillo..."
@@ -247,27 +248,28 @@ fi
 case $kernel in
 	0) echo "Se usara el kernel $kernelversion.x" ;;
 	1) echo "Instalando kernel 5.15.x..."
-	   xbps-install -y linux5.15 ;;
-	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
+	   xbps-install -y linux5.15
+	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all ;;
 	2) echo "Instalando kernel 5.10.x..."
-	   xbps-install -y linux5.10 ;;
-	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
+	   xbps-install -y linux5.10
+	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all ;;
 	3) echo "Instalando kernel 5.4.x..."
-	   xbps-install -y linux5.4 ;;
-	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
+	   xbps-install -y linux5.4
+	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all ;;
 	4) echo "Instalando kernel 4.19.x..."
-	   xbps-install -y linux4.19 ;;
-	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
+	   xbps-install -y linux4.19
+	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all ;;
 	5) echo "Instalando kernel lts..."
-	   xbps-install -y linux-lts ;;
-	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all
+	   xbps-install -y linux-lts
+	   xbps-remove -RFfy linux$kernelversion && vkpurge rm all ;;
 	*) echo "Respuesta no valida" ;;
 esac
 
 # Configuraciones
 # Configurar bash / zsh
 if [ "$zsh" = "s" ]; then
-	echo "Configurando zsh..." wget $zshrc
+	echo "Configurando zsh..."
+	wget $zshrc
 	cp .zshrc /home/$usuario
 	cp .zshrc /root
 else
