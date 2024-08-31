@@ -64,7 +64,8 @@ xbps-install -Suy
 echo "Añadiendo repocitorio multilib..."
 xbps-install -y void-repo-multilib
 
-# Descargar paquetes echo "Descargando paquetes basicos..."
+# Descargar paquetes 
+echo "Descargando paquetes basicos..."
 xbps-install -y xorg wget xclip vim-x11 python3 alsa-utils pulseaudio
 
 # Descargar compresores
@@ -278,7 +279,8 @@ fi
 # Eliminar ttys de los servicios
 echo "Eliminando ttys..."
 rm -rf /var/service/agetty-tty3
-rm -rf /var/service/agetty-tty4 rm -rf /var/service/agetty-tty5
+rm -rf /var/service/agetty-tty4 
+rm -rf /var/service/agetty-tty5
 rm -rf /var/service/agetty-tty6
 
 # Mensaje final
