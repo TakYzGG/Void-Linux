@@ -98,15 +98,15 @@ fi
 # Eliminar firmware innecesario
 case $hardware in
 	0) echo "Eliminando firmware de AMD y Nvidia..."
-	   xbps-remove -RFf linux-firmware-amd linux-firmware-nvidia ;;
+	   xbps-remove -RFfy linux-firmware-amd linux-firmware-nvidia ;;
 	1) echo "Eliminando firmware de Intel y Nvidia..."
-	   xbps-remove -RFf linux-firmware-intel linux-firmware-nvidia ;;
+	   xbps-remove -RFfy linux-firmware-intel linux-firmware-nvidia ;;
 	2) echo "Eliminando firmware de Nvidia"
-	   xbps-remove -RFf linux-firmware-nvidia ;;
+	   xbps-remove -RFfy linux-firmware-nvidia ;;
 	3) echo "Eliminando firmware de AMD"
-	   xbps-remove -RFf linux-firmware-amd ;;
+	   xbps-remove -RFfy linux-firmware-amd ;;
 	4) echo "Eliminando firmware de Intel"
-	   xbps-remove -RFf linux-firmware-intel ;;
+	   xbps-remove -RFfy linux-firmware-intel ;;
 	*) echo "Respuesta no valida" ;;
 esac
 
@@ -131,7 +131,7 @@ case $dewm in
 	4) echo "Instalando xfce..."
 	   xbps-install -y xfce4 galculator mupdf gparted xarchiver pavucontrol mpv audacious ;;
 	5) echo "Instalando i3wm..."
-	  xbps-install -y lxterminal i3 i3blocks i3-gaps ;;
+	   xbps-install -y lxterminal i3 i3blocks i3-gaps ;;
 	6) echo "Instalando qtile..."
 	   xbps-install -y lxterminal qtile ;;
 	7) echo "Instalando bspwm..."
