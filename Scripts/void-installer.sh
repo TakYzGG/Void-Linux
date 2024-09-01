@@ -25,7 +25,7 @@ echo "https://github.com/TakYzGG"
 # Usuario, repos y hardware
 read -p "¿Cual es tu nombre de usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-echo "¿seleccione su hardware?\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
+echo "seleccione su hardware\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
 read -p "Elige una opcion: " hardware
 # Init y de/wm
 echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
@@ -81,7 +81,7 @@ echo "Añadiendo repocitorio multilib..."
 xbps-install -y void-repo-multilib
 # Descargar paquetes 
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xclip vim-x11 python3 alsa-utils pulseaudio
+xbps-install -y xorg wget xclip xdg-user-dirs vim-x11 python3 alsa-utils pulseaudio
 # Descargar compresores
 echo "Descargando compresores..."
 xbps-install -y xz zip unzip p7zip
@@ -304,3 +304,4 @@ rm -rf /var/service/agetty-tty6
 
 # Mensaje final
 echo "La instalacion termino"
+echo "ejecuta 'xdg-user-dirs-update' para crear los directorios de tu usuario"
