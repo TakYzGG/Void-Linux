@@ -11,8 +11,8 @@ if [ "$root" != "root" ]; then
 fi
 
 # Programas que uso con i3
-echo "Descargando algunos programas..."
-xbps-install -y feh dmenu vifm cmus scrot
+echo "Descargando paquetes..."
+xbps-install -y feh mpv dmenu vifm cmus scrot mupdf arandr gparted lxappearance
 
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
