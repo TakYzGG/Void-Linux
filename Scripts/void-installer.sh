@@ -22,7 +22,7 @@ echo "Creado por: TakYzGG"
 echo "https://github.com/TakYzGG"
 
 # Preguntas al usuario
-# Usuario, repos y hardware
+# Usuario, repos
 read -p "¿Cual es tu nombre de usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
 # Init y de/wm
@@ -52,7 +52,7 @@ echo "Elige una version del kernel linux:\n0: Kernel default\n1: Kernel 5.15.x\n
 read -p "¿Cual quieres usar?: " kernel
 
 # Hacer que todas las respuestas sean minusculas
-# Usuario, repos y hardware
+# Usuario, repos
 nonfree=$(echo "$nonfree" | tr '[:upper:]' '[:lower:]')
 # Controladores 
 wifi=$(echo "$wifi" | tr '[:upper:]' '[:lower:]')
@@ -87,7 +87,7 @@ xbps-install -y xz zip unzip p7zip
 echo "Añadiendo compatibilidad con exfat..."
 xbps-install -y exfat-utils
 
-# Usuario, repos y hardware
+# Usuario, repos
 # Añadir repo nonfree
 if [ "$nonfree" = "s" ]; then
 	echo "Añadiendo repocitorio nonfree..."
@@ -268,8 +268,16 @@ fi
 # Servicios
 # Mover servicios a /var/service
 echo "Creando servicios..."
-ln -s /etc/sv/dbus					/var/service
-ln -s /etc/sv/alsa					/var/service
+ln -s /etc/sv/dbus						/var/service
+ln -s /etc/sv/alsa						/var/service
+# Bluetooth
+if [ "$bluetooth" = "s" ]; then
+	ln -s /etc/sv/bluemand				/var/service
+if
+# Acpi
+if [ "$portatil" = "s" ]; then
+	ln -s /etc/sv/acpid					/var/service
+fi
 # Network Manager
 if [ "$wifi" = "s" ]; then
 	ln -s /etc/sv/NetworkManager		/var/service
