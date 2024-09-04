@@ -25,8 +25,6 @@ echo "https://github.com/TakYzGG"
 # Usuario, repos y hardware
 read -p "¿Cual es tu nombre de usuario?: " usuario
 read -p "¿Quieres añadir el repocitorio nonfree? (s/n): " nonfree
-echo "seleccione su hardware\n0: Intel\n1: AMD\n3: Intel y AMD\n4: Intel y Nvidia\n5: AMD y Nvidia "
-read -p "Elige una opcion: " hardware
 # Init y de/wm
 echo "Elige un gestor de sesion:\n0: Xinit\n1: Lxdm"
 read -p "¿Cual quieres usar?: " init
@@ -95,20 +93,6 @@ if [ "$nonfree" = "s" ]; then
 	echo "Añadiendo repocitorio nonfree..."
 	xbps-install -y void-repo-nonfree
 fi
-# Eliminar firmware innecesario
-case $hardware in
-	0) echo "Eliminando firmware de AMD y Nvidia..."
-	   xbps-remove -RFfy linux-firmware-amd linux-firmware-nvidia ;;
-	1) echo "Eliminando firmware de Intel y Nvidia..."
-	   xbps-remove -RFfy linux-firmware-intel linux-firmware-nvidia ;;
-	2) echo "Eliminando firmware de Nvidia"
-	   xbps-remove -RFfy linux-firmware-nvidia ;;
-	3) echo "Eliminando firmware de AMD"
-	   xbps-remove -RFfy linux-firmware-amd ;;
-	4) echo "Eliminando firmware de Intel"
-	   xbps-remove -RFfy linux-firmware-intel ;;
-	*) echo "Respuesta no valida" ;;
-esac
 
 # Init y de/wm
 # Instalar xinit / lxdm
