@@ -12,7 +12,7 @@ fi
 
 # Programas que uso con i3
 echo "Descargando paquetes..."
-xbps-install -y feh mpv dmenu vifm cmus scrot mupdf arandr gparted lxappearance
+xbps-install -y feh mpv dmenu vifm cmus scrot mupdf arandr gparted pamixer lxappearance
 
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
