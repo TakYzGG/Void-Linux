@@ -12,7 +12,7 @@ fi
 
 # Programas que uso con i3
 echo "Descargando paquetes..."
-xbps-install -y feh mpv rofi dmenu vifm cmus scrot mupdf arandr gparted pamixer lxappearance
+xbps-install -y feh mpv rofi vifm cmus scrot mupdf arandr gparted pamixer lxappearance
 
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
@@ -50,9 +50,7 @@ chmod +x /home/$usuario/.config/i3blocks/modulos/*
 
 # Rofi
 mv rofi-themes-collection/themes/*			/usr/share/rofi/themes
-
-# Mover scripts de dmenu
-mv Dotfiles-main/dmenu-menus/*				/usr/local/bin
+mv Dotfiles/rofi-menus/*					/usr/local/bin
 chmod +x /usr/local/bin/*
 
 # Mover Wallpapers
