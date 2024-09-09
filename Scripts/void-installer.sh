@@ -79,7 +79,7 @@ echo "Añadiendo repocitorio multilib..."
 xbps-install -y void-repo-multilib
 # Descargar paquetes 
 echo "Descargando paquetes basicos..."
-xbps-install -y xorg wget xclip xdg-user-dirs vim-x11 python3 alsa-utils pulseaudio pulseaudio-utils
+xbps-install -y xorg git wget xclip xdg-user-dirs vim-x11 python3 alsa-utils pulseaudio pulseaudio-utils
 # Descargar compresores
 echo "Descargando compresores..."
 xbps-install -y xz zip unzip p7zip

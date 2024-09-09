@@ -12,11 +12,12 @@ fi
 
 # Programas que uso con i3
 echo "Descargando paquetes..."
-xbps-install -y feh mpv dmenu vifm cmus scrot mupdf arandr gparted pamixer lxappearance
+xbps-install -y feh mpv rofi dmenu vifm cmus scrot mupdf arandr gparted pamixer lxappearance
 
 # Descargar Dotfiles
 echo "Descargando Dotfiles..."
-wget https://github.com/TakYzGG/Dotfiles/archive/refs/heads/main.zip -O Dotfiles.zip
+git clone https://github.com/TakYzGG/Dotfiles/
+git clone https://github.com/newmanls/rofi-themes-collection   
 
 # Descomprimir Dotfiles.zip
 echo "Descompriendo Dotfiles.zip"
@@ -36,16 +37,19 @@ rm -rf /home/$usuario/.config/vifm
 
 # Mover configuraciones
 echo "Moviendo configuraciones..."
-mv Dotfiles-main/.config/i3					/home/$usuario/.config
-mv Dotfiles-main/.config/i3blocks			/home/$usuario/.config
-mv Dotfiles-main/.config/lxterminal			/home/$usuario/.config
-mv Dotfiles-main/.config/gtk-3.0			/home/$usuario/.config
-mv Dotfiles-main/.config/vim/.vim			/home/$usuario/
-mv Dotfiles-main/.config/vim/.vimrc			/home/$usuario/
-mv Dotfiles-main/.config/vifm/*				/home/$usuario/.config
+mv Dotfiles/.config/i3						/home/$usuario/.config
+mv Dotfiles/.config/i3blocks				/home/$usuario/.config
+mv Dotfiles/.config/lxterminal				/home/$usuario/.config
+mv Dotfiles/.config/gtk-3.0					/home/$usuario/.config
+mv Dotfiles/.config/vim/.vim				/home/$usuario/
+mv Dotfiles/.config/vim/.vimrc				/home/$usuario/
+mv Dotfiles/.config/vifm/*					/home/$usuario/.config
 
 # Dar permisos a los modulos de i3blocks
 chmod +x /home/$usuario/.config/i3blocks/modulos/*
+
+# Rofi
+mv rofi-themes-collection/themes/*			/usr/share/rofi/themes
 
 # Mover scripts de dmenu
 mv Dotfiles-main/dmenu-menus/*				/usr/local/bin
@@ -53,11 +57,11 @@ chmod +x /usr/local/bin/*
 
 # Mover Wallpapers
 echo "Moviendo Wallpapers..."
-mv Dotfiles-main/Wallpapers					/home/$usuario/
+mv Dotfiles/Wallpapers						/home/$usuario/
 
 # Mover fuentes
 echo "Moviendo fuentes..."
-mv Dotfiles-main/Fonts/*					/usr/share/fonts/
+mv Dotfiles/Fonts/*							/usr/share/fonts/
 
 # Crear carpetas
 echo "Creando carpetas..."
@@ -65,7 +69,7 @@ mkdir /home/$usuario/Screenshots
 
 # Eliminar reciduos
 echo "Eliminando reciduos..."
-rm -rf Dotfiles.zip Dotfiles-main
+rm -rf Dotfiles
 
 # Mensaje final
 echo "Termino la configuracion"
